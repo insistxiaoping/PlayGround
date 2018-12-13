@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd 
+	http://www.springframework.org/schema/mvc 
+	http://www.springframework.org/schema/mvc/spring-mvc.xsd 
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context.xsd 
+	http://www.springframework.org/schema/aop 
+	http://www.springframework.org/schema/aop/spring-aop.xsd 
+	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx.xsd ">
+	
+	
+	 <!-- 配置@ResponseBody 保证返回值为UTF-8 -->
+    <!-- 因为StringHttpMessageConverter默认是ISO8859-1 -->
+    <!-- 用于使用@ResponseBody后返回中文避免乱码 -->
+    <bean id="utf8Charset" class="java.nio.charset.Charset"
+        factory-method="forName">
+        <constructor-arg value="UTF-8" />
+    </bean>
+    
+	<!-- 注解方式 -->
+	<mvc:annotation-driven />
+	<mvc:annotation-driven conversion-service="conversionService" />
+
+    <!-- 配置自动扫描的包 -->
+    <context:component-scan base-package="com.td.pm.controller" >
+<!--         制定扫包规则 ,只扫描使用@Controller注解的JAVA类 -->
+        <context:include-filter type="annotation"
+            expression="org.springframework.stereotype.Controller" />
+    </context:component-scan>
+    
+    
+    <!-- 2. 内部资源视图解析器 -->
+	<bean id="jspViewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/" />
+		<property name="suffix" value="" />
+	</bean>
+	<!-- 拦截器 -->
+	<bean id="annotationMethodHandlerAdapter"
+		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<!-- 日期格式转换 -->
+		<property name="webBindingInitializer">
+			<bean class="com.td.pm.utils.DateConverter" />
+		</property>
+	</bean>
+	<bean
+		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" />
+	<bean
+		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<bean
+					class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+					<property name="supportedMediaTypes">
+						<list>
+							<value>text/html;charset=UTF-8</value>
+							<value>application/json;charset=UTF-8</value>
+						</list>
+					</property>
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<bean id="conversionService"
+		class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+		<property name="converters">
+			<list>
+				<bean class="com.td.pm.utils.DateConverter" />
+			</list>
+		</property>
+	</bean>
+	<!-- 上传文件 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!--最大上传尺寸 5M -->
+		<property name="maxUploadSize" value="5242880" />
+	</bean>
+	
+	</beans>
+    
