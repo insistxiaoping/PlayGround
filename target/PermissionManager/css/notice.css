@@ -1,0 +1,185 @@
+/*馆内须知*/
+.top{
+   width:1300px;
+    height: 150px;
+    margin:10px 30px 0px 30px;
+    background-color:#008c9e;
+ }
+.sub_notice{
+    width:700px;
+    height:40px;
+    margin:10px 10px 5px 10px;
+    left:228px;
+    position: absolute;
+    top:102px;
+    background-color:#008c9e ;
+   
+}
+.sub_notice ul {
+    margin: 0;
+margin-left: 1px;
+padding: 0;
+list-style-type: none; 
+line-height: 3em;;
+}
+.sub_notice a {
+ display: block; 
+width: 220px; 
+text-align: center;
+text-decoration: none;
+background-color: #008c9e;
+font-size:20px;color:rgba(50,50,50,100);
+}
+.sub_notice a:hover {
+background-color: #E6E6FA;
+} 
+ .top .logo{
+ 	width:200px;
+ 	height:140px;
+ 	margin:10px 20px 30px 20px;
+    border-radius:50%;
+    -moz-border-radius: 15px; 
+    -webkit-border-radius: 15px; 
+ }
+ .top .title{
+ 	width:400px;
+ 	height:80px;
+ 	margin:10px 20px 30px 20px;
+ 	right:50px;
+ 	position:absolute;
+ 	top:20px;
+
+ }
+ .title p{
+ 	font-size: 50px;
+ 	margin: 10px 20px 30px 20px;
+
+ }
+ .top .today{
+ 	width:400px;
+    height:40px;
+    margin:10px 20px 20px 20px;
+    right:30px;
+    position:  absolute;
+    top:120px;
+ }
+ 
+.left_nav{
+	width: 201px;
+    height: 480px;
+    margin:0px 30px auto  30px;
+    left:10px;
+    background-color:#008c9e ;
+    bottom: 20px;
+}
+.left_nav ul {
+margin: 0;
+margin-left: 1px;
+padding: 0;
+list-style-type: none; 
+line-height: 5em;
+}
+
+.left_nav a {
+display: block; 
+width: 200px; 
+text-align: center;
+text-decoration: none;
+background-color: #008c9e;
+font-size:25px;color:rgba(50,50,50,100);
+
+}
+
+.left_nav a:hover {
+background-color: #E6E6FA;
+}
+.main{
+	width:1000px;
+    position:  absolute;
+    height: 400px;
+    margin: 20px 10px 20px 20px;
+    left:280px;
+    top:180px;
+}
+.main_form{
+	width:600px;
+	position:  absolute;
+    height: 300px;
+    margin: 20px 10px 20px 50px;
+    left:80px;
+    top:110px;
+}
+.main .Mypage{
+    width:200px;
+    height:140px;
+    margin:10px 20px 30px 20px;
+    border-radius:50%;
+    -moz-border-radius: 15px; 
+    -webkit-border-radius: 15px; 
+    left:10px;
+    top:80px;
+    position:  absolute;
+}
+.main .MyInfo{
+    width:500px;
+    margin:10px 20px 30px 20px;
+    border-radius:50%;
+    -moz-border-radius: 15px; 
+    -webkit-border-radius: 15px; 
+    left:200px;
+    position:  absolute;
+    height:200px;
+}
+button{
+	width:260px;
+    height: 40px;
+    background-color: #3a9ad9;
+    position: absolute;
+    left:100px;
+    bottom: 20px;
+    border-radius:5px;
+    padding: 0px 10px;
+    font-size: 20px;   
+}
+table{
+    text-align: center;
+}
+#topic{
+background-color:#008c9e;
+ font-size: 20px; 
+
+}
+
+.table-head{padding-right:17px;background-color:#008c9e;color:rgba(50,50,50,100);}
+.table-body{width:100%; height:300px;overflow-y:scroll;}
+.table-head table,.table-body table{width:100%;}
+.table-body table {table-layout:fixed;word-break:break-all;}
+.table-body tr:nth-child(2n+1){background-color:#f2f2f2; }
+/* tr:nth-child(2n+1){background-color:#f2f2f2;} 
+*/
+.mt10{
+    margin-top:10px;
+}
+.contact_tel{
+background-position: -144px -48px;
+width:60px;
+height:60px;
+margin-right: 15px;
+}
+.ico_club{
+    background:url(tel.png)no-repeat;
+
+}
+.fl{
+    float:left;
+}
+.footer{
+    width:1300px;
+    height:40px;
+    position:fixed;
+   background-color:#008c9e;
+   top:640px;
+   margin:0px 30px 20px 30px;
+  
+}
+   /*这是最下面的版权*/

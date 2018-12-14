@@ -1,0 +1,109 @@
+/*登录卡选项*/
+.top{
+    width: 768px;
+    height: 200px;
+     margin:10px auto;
+  }
+  /*top最上面的--整体分上中下结构，上面暂无内容，中间登录，下面版权*/
+    .login{
+    width:768px; 
+    height:260px;
+    margin:10px auto;
+    padding: 10px;
+   }
+   .choose ul {
+    list-style: none;
+    height: 30px; 
+    font-size: 20px;
+    line-height: 40px;
+ 
+  }
+  .choose ul li { 
+    cursor: pointer;
+    float: left;
+    list-style: none;
+    height: 35px;
+    padding: 0px 34px;
+    margin-left: 130px;
+    color: black;
+  }
+li:hover{
+    border-bottom:3px solid #C2B9B9;
+  }
+.hidden{
+    display: none;
+  }
+ .funct .name{
+    color: #302C2C;
+    font-size: 15px;
+    margin-left: 260px;
+    margin-top:10px; 
+    top:30px;
+    margin-bottom: 5px;
+ }  
+ .funct .passw{
+    color: #302C2C;
+    font-size: 15px;
+    margin-left: 260px;
+    margin-top:10px; 
+    margin-bottom: 5px;
+ }
+.funct .ntext{
+    line-height: 30px;
+    width:250px;
+    color: black;
+    position: absolute;
+    left: 560px;
+}
+.funct .ptext{
+   line-height: 30px;
+   width:250px;
+   color: black;
+   position: absolute;
+   left: 560px;
+}
+.ntext:focus,.ptext:focus{
+    box-shadow: 1px 0px 3px 1px #C2B9B9;
+}
+.loader{
+    width:260px;
+    height: 40px;
+    background-color: rgba(70 130 180);
+    position: absolute;
+    left:560px;
+    border-radius:5px;
+    padding: 0px 30px;
+    font-size: 20px;   
+}
+.nosign{
+    text-align: center;
+    color: black;
+}
+.apply{
+    width:240px;
+    height: 30px;   
+    position: absolute;
+    top:560px;
+    left:560px;
+    border: 1px solid rgba(250, 162, 20, 0.93);  
+    padding-left:19px; 
+    font-size: 20px; 
+    color: black;
+    text-align: center;
+     
+}
+.apply:hover{
+    border:3px solid #C2B9B9;
+}
+ 
+.loader:hover{
+   
+    background-color: rgba(240, 193, 112, 0.93);
+} 
+.footer{
+    width:1300px;
+    height:20px;
+    position:absolute;
+    left:0px;
+   margin: 90px 0px 0px 0px;}
+   /*这是最下面的版权*/
