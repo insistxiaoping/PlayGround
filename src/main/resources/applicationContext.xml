@@ -55,7 +55,7 @@
         <property name="dataSource" ref="dataSource" />
         <!-- 自动扫描mapping.xml文件 -->
         <property name="configLocation" value="classpath:sqlMapConfig.xml" />
-        <property name="mapperLocations" value="classpath:com/td/pm/mapper/*.xml"></property>
+        <property name="mapperLocations" value="classpath:com/td/pm/mapper/*.xml"/>
         <!-- MybatisSpringPageInterceptor分页拦截器 -->
 <!-- 		<property name="plugins"> -->
 <!-- 			<bean class="com.td.pm.utils.MybatisSpringPageInterceptor"></bean> -->
