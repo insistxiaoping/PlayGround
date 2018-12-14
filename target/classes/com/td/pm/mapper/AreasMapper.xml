@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.td.lp.mapper.AreasMapper" >
+  <resultMap id="BaseResultMap" type="com.td.lp.bean.Areas" >
+    <id column="area_id" property="areaId" jdbcType="VARCHAR" />
+    <result column="area_name" property="areaName" jdbcType="VARCHAR" />
+    <result column="area_total" property="areaTotal" jdbcType="INTEGER" />
+    <result column="area_rest" property="areaRest" jdbcType="INTEGER" />
+    <result column="area_const" property="areaConst" jdbcType="INTEGER" />
+    <result column="area_photo" property="areaPhoto" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    area_id, area_name, area_total, area_rest, area_const, area_photo
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.td.lp.bean.AreasExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from areas
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from areas
+    where area_id = #{areaId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from areas
+    where area_id = #{areaId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.td.lp.bean.AreasExample" >
+    delete from areas
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.td.lp.bean.Areas" >
+    insert into areas (area_id, area_name, area_total, 
+      area_rest, area_const, area_photo
+      )
+    values (#{areaId,jdbcType=VARCHAR}, #{areaName,jdbcType=VARCHAR}, #{areaTotal,jdbcType=INTEGER}, 
+      #{areaRest,jdbcType=INTEGER}, #{areaConst,jdbcType=INTEGER}, #{areaPhoto,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.td.lp.bean.Areas" >
+    insert into areas
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="areaId != null" >
+        area_id,
+      </if>
+      <if test="areaName != null" >
+        area_name,
+      </if>
+      <if test="areaTotal != null" >
+        area_total,
+      </if>
+      <if test="areaRest != null" >
+        area_rest,
+      </if>
+      <if test="areaConst != null" >
+        area_const,
+      </if>
+      <if test="areaPhoto != null" >
+        area_photo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="areaId != null" >
+        #{areaId,jdbcType=VARCHAR},
+      </if>
+      <if test="areaName != null" >
+        #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaTotal != null" >
+        #{areaTotal,jdbcType=INTEGER},
+      </if>
+      <if test="areaRest != null" >
+        #{areaRest,jdbcType=INTEGER},
+      </if>
+      <if test="areaConst != null" >
+        #{areaConst,jdbcType=INTEGER},
+      </if>
+      <if test="areaPhoto != null" >
+        #{areaPhoto,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.td.lp.bean.AreasExample" resultType="java.lang.Integer" >
+    select count(*) from areas
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update areas
+    <set >
+      <if test="record.areaId != null" >
+        area_id = #{record.areaId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areaName != null" >
+        area_name = #{record.areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areaTotal != null" >
+        area_total = #{record.areaTotal,jdbcType=INTEGER},
+      </if>
+      <if test="record.areaRest != null" >
+        area_rest = #{record.areaRest,jdbcType=INTEGER},
+      </if>
+      <if test="record.areaConst != null" >
+        area_const = #{record.areaConst,jdbcType=INTEGER},
+      </if>
+      <if test="record.areaPhoto != null" >
+        area_photo = #{record.areaPhoto,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update areas
+    set area_id = #{record.areaId,jdbcType=VARCHAR},
+      area_name = #{record.areaName,jdbcType=VARCHAR},
+      area_total = #{record.areaTotal,jdbcType=INTEGER},
+      area_rest = #{record.areaRest,jdbcType=INTEGER},
+      area_const = #{record.areaConst,jdbcType=INTEGER},
+      area_photo = #{record.areaPhoto,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.td.lp.bean.Areas" >
+    update areas
+    <set >
+      <if test="areaName != null" >
+        area_name = #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaTotal != null" >
+        area_total = #{areaTotal,jdbcType=INTEGER},
+      </if>
+      <if test="areaRest != null" >
+        area_rest = #{areaRest,jdbcType=INTEGER},
+      </if>
+      <if test="areaConst != null" >
+        area_const = #{areaConst,jdbcType=INTEGER},
+      </if>
+      <if test="areaPhoto != null" >
+        area_photo = #{areaPhoto,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where area_id = #{areaId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.td.lp.bean.Areas" >
+    update areas
+    set area_name = #{areaName,jdbcType=VARCHAR},
+      area_total = #{areaTotal,jdbcType=INTEGER},
+      area_rest = #{areaRest,jdbcType=INTEGER},
+      area_const = #{areaConst,jdbcType=INTEGER},
+      area_photo = #{areaPhoto,jdbcType=VARCHAR}
+    where area_id = #{areaId,jdbcType=VARCHAR}
+  </update>
+</mapper>
