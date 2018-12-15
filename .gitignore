@@ -1,2 +1,7 @@
 .idea/
 /pm.iml
+/.classpath
+/.project
+/pom.xml
+/target/
+/.settings/
