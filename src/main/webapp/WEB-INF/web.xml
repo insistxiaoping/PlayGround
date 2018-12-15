@@ -4,15 +4,9 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	id="WebApp_ID" version="3.0">
   <display-name>LocationPlatform</display-name>
-  <welcome-file-list>
-<!--   <welcome-file>loginPage.jsp</welcome-file> -->
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-  </welcome-file-list>
+<welcome-file-list>
+	<welcome-file>/jsp/home.jsp</welcome-file>
+</welcome-file-list>
   
   <!-- 1.spring框架 -->
 	<context-param>
@@ -39,18 +33,18 @@
 	</servlet-mapping>
 
 	<!-- 3.整合CXF WebService -->
-	<servlet>
-		<servlet-name>cxf</servlet-name>
-		<servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>
-		<init-param>
-			<param-name>config-location</param-name>
-			<param-value>classpath:cxf-servlet.xml</param-value>
-		</init-param>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>cxf</servlet-name>
-		<url-pattern>/cxf/*</url-pattern>
-	</servlet-mapping>
+	<!--<servlet>-->
+		<!--<servlet-name>cxf</servlet-name>-->
+		<!--<servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>-->
+		<!--<init-param>-->
+			<!--<param-name>config-location</param-name>-->
+			<!--<param-value>classpath:cxf-servlet.xml</param-value>-->
+		<!--</init-param>-->
+	<!--</servlet>-->
+	<!--<servlet-mapping>-->
+		<!--<servlet-name>cxf</servlet-name>-->
+		<!--<url-pattern>/cxf/*</url-pattern>-->
+	<!--</servlet-mapping>-->
 
 
 	<!-- 4.编码过滤器，解决中文乱码 -->
