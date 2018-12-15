@@ -16,7 +16,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>个人中心</title>
+    <title>个人中心-我的申请</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/notice.css">
 
     <!--这是按钮组-->
@@ -32,20 +32,20 @@
         <iframe width="300" scrolling="no" height="65" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&id=10&icon=1&num=3"></iframe></div>
     <div class="sub_notice">
         <ul>
-            <li style="float:left ;list-style: none;"><a href="personal.jsp" style="background-color: #E6E6FA;">我的申请</a></li>
-            <li style="float:left ;list-style: none;"><a href="personal2.jsp" >我的资料</a></li>
+            <li style="float:left ;list-style: none;"><a href="${pageContext.request.contextPath}/links/personal" style="background-color: #E6E6FA;">我的申请</a></li>
+            <li style="float:left ;list-style: none;"><a href="${pageContext.request.contextPath}/links/personal2" >我的资料</a></li>
         </ul>
     </div>
 </div>
 <!--这是左边导航-->
 <div class="left_nav">
     <ul>
-        <li><a href="${pageContext.request.contextPath}/links/home" style="font-size:25px;color:rgba(50,50,50,100);">首页</a></li>
+        <li><a href="${pageContext.request.contextPath}/links/home" >首页</a></li>
         <li><a href="${pageContext.request.contextPath}/links/personal" style="font-size:25px;color:rgba(50,50,50,100);">个人中心</a></li>
-        <li><a href="${pageContext.request.contextPath}/links/applyEquipment" style="font-size:25px;color:rgba(50,50,50,100);">器材申请</a></li>
-        <li><a href="${pageContext.request.contextPath}/links/applyArea" style="font-size:25px;color:rgba(50,50,50,100);">场地申请</a></li>
-        <li><a href="${pageContext.request.contextPath}/links/SportActivity" style="font-size:25px;color:rgba(50,50,50,100);">馆内通知</a></li>
-        <li><a href="${pageContext.request.contextPath}/links/notice" style="font-size:25px;color:rgba(50,50,50,100);">馆内须知</a></li>
+        <li><a href="${pageContext.request.contextPath}/links/applyEquipment" >器材申请</a></li>
+        <li><a href="${pageContext.request.contextPath}/links/applyArea" >场地申请</a></li>
+        <li><a href="${pageContext.request.contextPath}/links/SportActivity" >馆内通知</a></li>
+        <li><a href="${pageContext.request.contextPath}/links/notice" >馆内须知</a></li>
     </ul>
 </div>
 <div class="main">

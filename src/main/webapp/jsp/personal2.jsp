@@ -16,10 +16,8 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>个人中心</title>
-    <link rel="stylesheet" type="text/css" href="/WEB-INF/css/notice.css">
-
-    <!--这是按钮组-->
+    <title>个人中心——资料查询</title>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/notice.css">
 </head>
 <body>
 <div class="top">
@@ -32,26 +30,26 @@
         <iframe width="300" scrolling="no" height="65" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&id=10&icon=1&num=3"></iframe></div>
     <div class="sub_notice">
         <ul>
-            <li style="float:left ;list-style: none;"><a href="personal.html" >我的申请</a></li>
-            <li style="float:left ;list-style: none;"><a href="personal2.html" style="background-color: #E6E6FA;">我的资料</a></li>
+            <li style="float:left ;list-style: none;"><a href="${pageContext.request.contextPath}/links/personal" style="background-color: #E6E6FA;">我的申请</a></li>
+            <li style="float:left ;list-style: none;"><a href="${pageContext.request.contextPath}/links/personal2" >我的资料</a></li>
         </ul>
     </div>
 </div>
 <!--这是左边导航-->
 <div class="left_nav">
     <ul>
-        <li><a href="home.jsp">首页</a></li>
-        <li><a href="personal.jsp"  >个人中心</a></li>
-        <li><a href="applyEquipment.jsp" >器材申请</a></li>
-        <li><a href="applyArea.jsp" style="background-color: #E6E6FA;" >场地申请</a></li>
-        <li><a href="SportActivity.jsp" >馆内通知</a></li>
-        <li><a href="notice.jsp">馆内须知</a></li>
+        <li><a href="${pageContext.request.contextPath}/links/home" >首页</a></li>
+        <li><a href="${pageContext.request.contextPath}/links/personal" style="font-size:25px;color:rgba(50,50,50,100);">个人中心</a></li>
+        <li><a href="${pageContext.request.contextPath}/links/applyEquipment" >器材申请</a></li>
+        <li><a href="${pageContext.request.contextPath}/links/applyArea" >场地申请</a></li>
+        <li><a href="${pageContext.request.contextPath}/links/SportActivity" >馆内通知</a></li>
+        <li><a href="${pageContext.request.contextPath}/links/notice" >馆内须知</a></li>
     </ul>
 </div>
 <!-- 内容-->
 <div class="main">
     <div class="Mypage">
-        <img src="/WEB-INF/image/logo1.jpg" width="100" height="100"  style="border-radius:50% ;margin-top: 30px;margin-left: 35px">
+        <img src="${pageContext.request.contextPath}/image/logo1.jpg" width="100" height="100"  style="border-radius:50% ;margin-top: 30px;margin-left: 35px">
     </div>
     <div class="MyInfo">
         <hr  style="height:1px;border:none;border-top:1px solid #555555;" /></br>

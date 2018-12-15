@@ -1,3 +1,4 @@
+
 /*馆内须知*/
 .top{
    width:1300px;
@@ -34,29 +35,29 @@ font-size:20px;color:rgba(50,50,50,100);
 background-color: #E6E6FA;
 } 
  .top .logo{
- 	width:200px;
- 	height:140px;
- 	margin:10px 20px 30px 20px;
+    width:200px;
+    height:140px;
+    margin:10px 20px 30px 20px;
     border-radius:50%;
     -moz-border-radius: 15px; 
     -webkit-border-radius: 15px; 
  }
  .top .title{
- 	width:400px;
- 	height:80px;
- 	margin:10px 20px 30px 20px;
- 	right:50px;
- 	position:absolute;
- 	top:20px;
+    width:400px;
+    height:80px;
+    margin:10px 20px 30px 20px;
+    right:50px;
+    position:absolute;
+    top:20px;
 
  }
  .title p{
- 	font-size: 50px;
- 	margin: 10px 20px 30px 20px;
+    font-size: 50px;
+    margin: 10px 20px 30px 20px;
 
  }
  .top .today{
- 	width:400px;
+    width:400px;
     height:40px;
     margin:10px 20px 20px 20px;
     right:30px;
@@ -65,7 +66,7 @@ background-color: #E6E6FA;
  }
  
 .left_nav{
-	width: 201px;
+    width: 201px;
     height: 480px;
     margin:0px 30px auto  30px;
     left:10px;
@@ -94,7 +95,7 @@ font-size:25px;color:rgba(50,50,50,100);
 background-color: #E6E6FA;
 }
 .main{
-	width:1000px;
+    width:1000px;
     position:  absolute;
     height: 400px;
     margin: 20px 10px 20px 20px;
@@ -102,12 +103,17 @@ background-color: #E6E6FA;
     top:180px;
 }
 .main_form{
-	width:600px;
-	position:  absolute;
+    width:420px;
+    position:  absolute;
     height: 300px;
     margin: 20px 10px 20px 50px;
     left:80px;
     top:110px;
+    font-size: 14px;
+}
+.main_form input{
+    margin-right: 30px;
+    margin-top: 30px;
 }
 .main .Mypage{
     width:200px;
@@ -131,7 +137,7 @@ background-color: #E6E6FA;
     height:200px;
 }
 button{
-	width:260px;
+    width:260px;
     height: 40px;
     background-color: #3a9ad9;
     position: absolute;
@@ -182,4 +188,14 @@ margin-right: 15px;
    margin:0px 30px 20px 30px;
   
 }
-   /*这是最下面的版权*/
+/*退出登录*/
+.loginOut{
+    position: absolute;
+    left: 90%;
+    top: 21.5%;
+    font-size: 12px;
+}
+.loginOut a{
+    color: #fff;
+    text-decoration: none;
+}

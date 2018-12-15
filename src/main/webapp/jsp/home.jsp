@@ -17,7 +17,7 @@
 <head>
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>申请场地</title>
+    <title>主页</title>
     <link href="${pageContext.request.contextPath}/css/notice.css" rel="stylesheet">
 </head>
 <body>
@@ -31,12 +31,12 @@
     <div class="today"><!--天气-->
         <iframe width="300" scrolling="no" height="65" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&id=10&icon=1&num=3"></iframe>
     </div>
-    <div class="sub_notice"><!--登录注册-->
+   <!--  <div class="sub_notice"> 
         <ul>
             <li style="float:left ;list-style: none;"><a href="login.jsp" >登录</a></li>
             <li style="float:left ;list-style: none;"><a href="register.jsp">注册</a></li>
         </ul>
-    </div>
+    </div> -->
 </div>
 <div class="left_nav">
     <ul>

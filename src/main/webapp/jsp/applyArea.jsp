@@ -17,11 +17,12 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>申请场地</title>
-    <link rel="stylesheet" type="text/css" href="/css/notice.css">
+    <!-- <link rel="stylesheet" type="text/css" href="/css/notice.css"> -->
+    <link href="${pageContext.request.contextPath}/css/notice.css" rel="stylesheet">
 </head>
 <body><div class="top">
     <div class="logo" align="left">
-        <img src="/image/logo1.jpg" width="100" height="100" style="border-radius:50% ;margin-top: 30px;margin-left: 35px">
+        <img src="${pageContext.request.contextPath}/image/logo1.jpg"  width="100" height="100" style="border-radius:50% ;margin-top: 30px;margin-left: 35px">
     </div>
     <div class="title">
         <p style="color:rgba(50,50,50,100);">体育馆预约系统</p></div>
@@ -31,13 +32,21 @@
     </div>
 </div>
 <div class="left_nav">
-    <ul>
+    <!-- <ul>
         <li><a href="home.jsp">首页</a></li>
         <li><a href="personal.jsp"  >个人中心</a></li>
         <li><a href="applyEquipment.jsp" >器材申请</a></li>
         <li><a href="applyArea.jsp" style="background-color: #E6E6FA;" >场地申请</a></li>
         <li><a href="SportActivity.jsp" >馆内通知</a></li>
         <li><a href="notice.jsp">馆内须知</a></li>
+    </ul> -->
+    <ul>
+        <li><a href="${pageContext.request.contextPath}/links/home">首页</a></li>
+        <li><a href="${pageContext.request.contextPath}/links/personal"  >个人中心</a></li>
+        <li><a href="${pageContext.request.contextPath}/links/applyEquipment" >器材申请</a></li>
+        <li><a href="${pageContext.request.contextPath}/links/applyArea" style="background-color: #E6E6FA;" >场地申请</a></li>
+        <li><a href="${pageContext.request.contextPath}/links/SportActivity" >馆内通知</a></li>
+        <li><a href="${pageContext.request.contextPath}/links/notice">馆内须知</a></li>
     </ul>
 </div>
 <div class="main">

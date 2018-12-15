@@ -18,7 +18,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>申请器材</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/notice.css">
-    <!--这是按钮组-->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">  
+    <script src="${pageContext.request.contextPath}/js/jquery-3.2.1.js"></script>   
+    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script> 
+
 </head>
 <body>
 <div class="top">
@@ -35,58 +38,82 @@
         </div>
 </div>
 <div class="left_nav">
-    <ul>
-        <li><a href="home.jsp">首页</a></li>
-        <li><a href="personal.jsp"  >个人中心</a></li>
-        <li><a href="applyEquipment.jsp" style="background-color: #E6E6FA;">器材申请</a></li>
-        <li><a href="applyArea.jsp"  >场地申请</a></li>
-        <li><a href="SportActivity.jsp" >馆内通知</a></li>
-        <li><a href="notice.jsp">馆内须知</a></li>
+     <ul>
+        <li><a href="${pageContext.request.contextPath}/links/home">首页</a></li>
+        <li><a href="${pageContext.request.contextPath}/links/personal"  >个人中心</a></li>
+        <li><a href="${pageContext.request.contextPath}/links/applyEquipment"style="background-color: #E6E6FA;" >器材申请</a></li>
+        <li><a href="${pageContext.request.contextPath}/links/applyArea"  >场地申请</a></li>
+        <li><a href="${pageContext.request.contextPath}/links/SportActivity" >馆内通知</a></li>
+        <li><a href="${pageContext.request.contextPath}/links/notice">馆内须知</a></li>
     </ul>
 </div>
 <div class="main">
-    <form action="" style="font-size: 25px;color:rgba(50,50,50,100);">
-        选择日期:    <input type="date" name="txtDate"></br></br>
-        选择时段：
-        <label><input name="time" type="checkbox" value="" />8:00-10:00 </label>
-        <label><input name="time" type="checkbox" value="" />10:00-12:00 </label>
-        <label><input name="time" type="checkbox" value="" />14:00-16:00 </label>
-        <label><input name="time" type="checkbox" value="" />16:00-18:00</label>
-        <label><input name="time" type="checkbox" value="" />18:00-20:00</label>
+        <form id="applyForm" style="font-size: 25px;color:rgba(50,50,50,100);">
+        选择日期:&nbsp;&nbsp;&nbsp;&nbsp;<input type="date" name="txtDate"></br></br>
+        选择时段： 
+        <label><input name="time" type="checkbox" value="8:00-10:00" />8:00-10:00 </label> 
+        <label><input name="time" type="checkbox" value="10:00-12:00" />10:00-12:00 </label> 
+        <label><input name="time" type="checkbox" value="14:00-16:00" />14:00-16:00 </label> 
+        <label><input name="time" type="checkbox" value="16:00-18:00" />16:00-18:00</label> 
+        <label><input name="time" type="checkbox" value="18:00-20:00" />18:00-20:00</label>
         </br></br>
-        选择器材：
+     选择器材：
         <div class="main_form">
-            <label ><input name="Equipment" type="checkbox" value="" />羽毛球
-                <input  type="text" size="12" maxlength="3" placeholder="请输入数量"></label>
-            <label ><input name="Equipment" type="checkbox" value="" />羽毛球拍
-                <input  type="text" size="12" maxlength="3" placeholder="请输入数量"></label> </br>
-            <label ><input name="Equipment" type="checkbox" value="" />乒乓球
-                <input  type="text" size="12" maxlength="3" placeholder="请输入数量"> </label>
-            <label ><input name="Equipment" type="checkbox" value="" />乒乓球拍
-                <input  type="text" size="12" maxlength="3" placeholder="请输入数量"></label> </br>
-            <label ><input name="Equipment" type="checkbox" value="" />网球&nbsp;&nbsp;&nbsp;
-                <input  type="text" size="12" maxlength="3" placeholder="请输入数量"></label>
-            <label ><input name="Equipment" type="checkbox" value="" />网球拍
-                <input  type="text" size="12" maxlength="3" placeholder="请输入数量"></label> </br>
-            <label ><input name="Equipment" type="checkbox" value="" />排球&nbsp;&nbsp;&nbsp;
-                <input  type="text" size="12" maxlength="3" placeholder="请输入数量"></label>
-            <label ><input name="Equipment" type="checkbox" value="" />篮球
-                <input  type="text" size="12" maxlength="3" placeholder="请输入数量"></label> </br>
-            <label ><input name="Equipment" type="checkbox" value="" />足球&nbsp;&nbsp;&nbsp;
-                <input  type="text" size="12" maxlength="3" placeholder="请输入数量"></label>
-            <label ><input name="Equipment" type="checkbox" value="" />其他
-                <input  type="text" size="12" maxlength="3" placeholder="请输入数量"></label>
+            羽毛球 
+            <input  type="text" size="12" maxlength="3" name="ymqiu" value="" placeholder="请输入数量"> 
+            羽毛球拍 
+            <input  type="text" size="12"  name="ympai" value="" maxlength="3" placeholder="请输入数量">
+            乒乓球 
+            <input  type="text" size="12" name="ppqiu" value="" maxlength="3" placeholder="请输入数量">
+            乒乓球拍
+            <input  type="text" size="12"  name="pppai" value="" maxlength="3" placeholder="请输入数量">
+            网球&nbsp;&nbsp;&nbsp;&nbsp;
+            <input  type="text" size="12" name="wqiu" value="" maxlength="3" placeholder="请输入数量">
+            网球拍&nbsp;&nbsp;&nbsp;
+            <input  type="text" size="12" name="wqpai" value="" maxlength="3" placeholder="请输入数量">
+                <button  type="button" onclick="applyEquipment()">提交</button>       
+            </div>
         </div>
-    </form>
-    <div class="button" >
-        <button  type="submit" >提交</button>
-
-    </div>
+    </form> 
 </div>
 </div>
 <div class="footer">
     <center><font color="＃2d2d2d">版权所有@ 场地管理系统</font></center>
 </div>
-<!--版权模块-->
+<script>
+    function applyEquipment(){
+        // 数据库表字段
+        // apply_id：自增
+        // apply_user_id
+        // apply_equip_id：对应 name，比如网球拍的id 是 wqpai
+        // apply_date：格式：2018-12-20
+        // apply_time  格式： 8:00-10:00
+        // apply_pay： 数量*乘10
+        // apply_paid：0
+        console.log($("#applyForm").serialize());
+        var ymqiuNum = parseInt($('input[name="ymqiu"]').val())?parseInt($('input[name="ymqiu"]').val()):0;
+        var ympaiNum = parseInt($('input[name="ympai"]').val())?parseInt($('input[name="ympai"]').val()):0;
+        var ppqiuNum = parseInt($('input[name="ppqiu"]').val())?parseInt($('input[name="ppqiu"]').val()):0;
+        var pppaiNum = parseInt($('input[name="pppai"]').val())?parseInt($('input[name="pppai"]').val()):0;
+        var wqiuNum = parseInt($('input[name="wqiu"]').val())?parseInt($('input[name="wqiu"]').val()):0;
+        var wqpaiNum = parseInt($('input[name="wqpai"]').val())?parseInt($('input[name="wqpai"]').val()):0;
+        var sum =  (ymqiuNum+ympaiNum+ppqiuNum+pppaiNum+wqiuNum+wqpaiNum)*10; 
+        var data = "apply_pay="+sum+"&"+"apply_pay=0"
+        console.log(($("#applyForm").serialize()+data));
+        $.ajax({
+            type : get,
+            // url : ,
+            contentType : "application/json; charset=utf-8",
+            dataType : "json",
+            data : data
+            success : function(data) {
+                 alert("申请成功");
+            },
+            error : function(data) {
+                alert("登陆失败");
+            }
+        });
+    }
+</script>
 </body>
 </html>

@@ -16,39 +16,68 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>场地管理系统</title>
-    <link rel="stylesheet" type="text/css" href="/WEB-INF/css/register.css">
+    <title>注册</title>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/register.css">
+    <script src="${pageContext.request.contextPath}/js/jquery-3.2.1.js"></script>
 </head>
-<body background="/WEB-INF/image/体育馆背景.jpg" style=" background-repeat:no-repeat ;
+<body background="${pageContext.request.contextPath}/image/体育馆背景.jpg" style=" background-repeat:no-repeat ;
 background-size:100% 100%;
 background-attachment:fixed;">
-<!--设置背景-->
-
-<div class="top" >
-    <div class="text_433X1">
-        <center><font color="#505050">体育场地预约系统</font></center>
+    <div class="register_box">
+        <div class="box_row">
+            <div class="boxtitle"> 欢迎注册体育馆预约系统</div>
+            <form id="registForm">
+                <div class="registerbox"> 
+                    <div>姓名:<input class="ntext" type="user" name="user_name"placeholder="请输入注册手机号"></div></br> 
+                    <div>手机号码:<input class="ntext" type="user" name="user_phone"placeholder="请输入注册手机号"></div></br> 
+                    <div>密码：<input class="ptext" type="password" name="user_password"placeholder="请输入密码"></div></br> 
+                    <div >性别： 
+                        <div class="genderbox">
+                            <input name="user_sex" type="radio" value="male" onchange="changeSex();"/>男&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input  name="user_sex" type="radio" value="female" onchange="changeSex();"/>女</div>
+                        </div>
+                    <div>住址：<input class="ptext
+                    " type="user" name="user_address" placeholder="请输入住址"></div>
+                    <button type="button" class="loader" onclick="userRegis()">注册</button>   
+                </div>
+            </form>
+        </div>   
     </div>
-</div>
-<!--上面这部分暂无使用-->
-<div class="register_box">
-    <div class="box_row">
-        <img src ="/WEB-INF/image/timg.jpg" width="35" height="35" align ="left">
-        <li> 欢迎注册体育馆预约系统</li>
-        <hr  style="height:1px;border:none;border-top:1px solid #555555;" /></br>
-        <p>手 机 号 码：<input class="ntext" type="user" name="user_name"placeholder="请输入注册手机号"></p></br></br>
-        <p>密码：<input class="ptext" type="user" name="user_name"placeholder="请输入密码"></p></br></br>
-        <p>再次输入密码：<input class="ptext" type="user" name="user_name"placeholder="请再次输入密码"></p></br></br>
-        <p >性别：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input name="gender" type="radio" value="male" />男&nbsp;&nbsp;
-            <input  name="gender" type="radio" value="female" />女</p></br></br>
-        <p>住址：<input class="ptext" type="user" name="user_name"placeholder="请输入住址"></p></br></br>
-        <button class="loader" type="submit" >注册</button>
-    </div>
-</div>
-
-<div class="footer">
-    <center><font color="#2d2d2d">版权所有@ 场地管理系统</font></center>
-</div>
-<!--版权模块-->
+    <script>      
+      function userRegis(){
+          console.log($("#registForm").serialize());
+          // 数据表字段
+          // user_id ：手机号码，也是以后的登录名 name="user_phone"
+          // user_phone: 手机号码  name="user_phone"
+          // user_name: 姓名 name=user_name
+          // user_sex：性别 name="user_sex" 
+          // user_address：地址 name="user_address"
+          // user_password：密码 name="user_password"
+           $.ajax({
+              type : post,
+              // url : 项目url/login,
+              contentType : "application/json; charset=utf-8",
+              dataType : "json",
+              data : $("#registForm").serialize(),
+              success : function(data) {
+                  window.location.href="${pageContext.request.contextPath}/links/login";
+              },
+              error : function(data) {
+                  alert("注册失败");
+              }
+          }); 
+      };
+      function changeSex(){
+          var radio =document.getElementsByName("user_sex");
+          for(var i =0;i < radio.length;i++){
+              radio[i].removeAttribute('checked');
+              if(radio[i].checked){
+                  radio[i].setAttribute('checked',"checked");
+                  var sex = radio[i].value;
+                  // alert(varradioValue);
+              }
+          }
+      }
+    </script>
 </body>
 </html>

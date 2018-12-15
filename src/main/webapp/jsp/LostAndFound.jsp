@@ -34,23 +34,23 @@
     <div class="sub_notice">
         <ul>
             <li style="float:left ;list-style: none;">
-                <a href="SportActivity.jsp" >体育类活动</a></li>
+                <a href="${pageContext.request.contextPath}/links/SportActivity" >体育类活动</a></li>
             <li style="float:left ;list-style: none;">
-                <a href="NotSportActivity.jsp" >非体育类活动</a></li>
+                <a href="${pageContext.request.contextPath}/links/NotSportActivity" >非体育类活动</a></li>
             <li style="float:left ;list-style: none;">
-                <a href="LostAndFound.jsp" style="background-color: #E6E6FA;">失物招领</a></li>
+                <a href="${pageContext.request.contextPath}/links/LostAndFound" style="background-color: #E6E6FA;">失物招领</a></li>
         </ul>
     </div>
 </div>
 <!--这是左边导航-->
 <div class="left_nav">
     <ul>
-        <li><a href="home.jsp">首页</a></li>
-        <li><a href="personal.jsp" >个人中心</a></li>
-        <li><a href="applyEquipment.jsp" >器材申请</a></li>
-        <li><a href="applyArea.jsp" >场地申请</a></li>
-        <li><a href="SportActivity.jsp" style="background-color: #E6E6FA;" >馆内通知</a></li>
-        <li><a href="notice.jsp">馆内须知</a></li>
+        <li><a href="${pageContext.request.contextPath}/links/home">首页</a></li>
+        <li><a href="${pageContext.request.contextPath}/links/personal"  >个人中心</a></li>
+        <li><a href="${pageContext.request.contextPath}/links/applyEquipment" >器材申请</a></li>
+        <li><a href="${pageContext.request.contextPath}/links/applyArea"  >场地申请</a></li>
+        <li><a href="${pageContext.request.contextPath}/links/SportActivity" style="background-color: #E6E6FA;">馆内通知</a></li>
+        <li><a href="${pageContext.request.contextPath}/links/notice">馆内须知</a></li>
     </ul>
 </div>
 <div class="main">

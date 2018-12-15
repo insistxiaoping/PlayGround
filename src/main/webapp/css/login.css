@@ -1,109 +1,132 @@
 /*登录卡选项*/
 .top{
-    width: 768px;
-    height: 200px;
-     margin:10px auto;
-  }
-  /*top最上面的--整体分上中下结构，上面暂无内容，中间登录，下面版权*/
-    .login{
-    width:768px; 
-    height:260px;
-    margin:10px auto;
-    padding: 10px;
-   }
-   .choose ul {
-    list-style: none;
-    height: 30px; 
-    font-size: 20px;
-    line-height: 40px;
- 
-  }
-  .choose ul li { 
-    cursor: pointer;
-    float: left;
-    list-style: none;
-    height: 35px;
-    padding: 0px 34px;
-    margin-left: 130px;
-    color: black;
-  }
-li:hover{
-    border-bottom:3px solid #C2B9B9;
-  }
-.hidden{
-    display: none;
-  }
- .funct .name{
-    color: #302C2C;
-    font-size: 15px;
-    margin-left: 260px;
-    margin-top:10px; 
-    top:30px;
-    margin-bottom: 5px;
- }  
- .funct .passw{
-    color: #302C2C;
-    font-size: 15px;
-    margin-left: 260px;
-    margin-top:10px; 
-    margin-bottom: 5px;
- }
-.funct .ntext{
-    line-height: 30px;
-    width:250px;
-    color: black;
-    position: absolute;
-    left: 560px;
+  width: 768px;
+  height: 200px;
+  margin:20px auto 200px auto;
 }
-.funct .ptext{
-   line-height: 30px;
-   width:250px;
-   color: black;
-   position: absolute;
-   left: 560px;
+.text_433X1{  
+  height: 100px;
+  left: 600px;
+  top: 400px;
+  color: rgba(0, 0, 0, 1);
+  font-size: 55px;
+  line-height: 150%;
+  text-align: center;
+}
+  /*top最上面的--整体分上中下结构，上面标题，中间登录，下面版权*/
+/*  .register_box{
+    width: 500px;
+    height: 450px;
+    padding: 35px;
+    color: red;
+    position: absolute;
+    left: 44%;
+    top:380px;
+    margin-left: -200px;
+    margin-top: -250px; 
+  }*/
+.register_box{
+  background:#eae3e3;
+  opacity: .9;
+  width:468px; 
+  height:500px;
+  position:absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin:auto;
+  font-size: 14px;
+  color: #20366b;
+}
+.boxtitle{
+  width: 280px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 24px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #20366b;
+}
+.register_box div{
+  margin-top:20px;
+}
+.box_row{
+  width:500px;
+  height:40px;
+  left: 47%;
+  top:500px;
+}
+.registerbox{
+  margin-left: 50px;
+  position: absolute;
+}
+.box_row .ntext,
+.box_row .ptext{
+  line-height: 30px;
+  width:250px;  
+  position: absolute;
+  left: 100px;
+  margin-top: -10px;
+}
+
+/*  .reg{  width:450px;  height:auto;  margin:0 auto;  padding-top:100px;} 
+  .topic{ background:url(../images/denj_top.jpg); width:450px;  height:54px;}
+  .content{  border:1px solid #DBDBDB; color:#003976;  background:#F9F9F9; text-align:center}
+*/
+
+.hidden{
+  display: none;
 }
 .ntext:focus,.ptext:focus{
-    box-shadow: 1px 0px 3px 1px #C2B9B9;
+  box-shadow: 1px 0px 3px 1px #C2B9B9;
 }
-.loader{
-    width:260px;
-    height: 40px;
-    background-color: rgba(70 130 180);
-    position: absolute;
-    left:560px;
-    border-radius:5px;
-    padding: 0px 30px;
-    font-size: 20px;   
-}
-.nosign{
-    text-align: center;
-    color: black;
-}
-.apply{
-    width:240px;
-    height: 30px;   
-    position: absolute;
-    top:560px;
-    left:560px;
-    border: 1px solid rgba(250, 162, 20, 0.93);  
-    padding-left:19px; 
-    font-size: 20px; 
-    color: black;
-    text-align: center;
-     
-}
-.apply:hover{
-    border:3px solid #C2B9B9;
+.genderbox{
+  margin-top: -20px !important;
+  width: 200px;
+  position: absolute;
+  left: 100px;
 }
  
+.loader{
+  width:250px;
+  height: 40px;
+  background-color: #fff;
+  position: absolute;
+  left: 100px;
+  padding: 0px 30px;
+  font-size: 20px; 
+  top: 120%;  
+}
+.nosign{
+  text-align: center;
+  color: black;
+}
+.apply{
+  width:240px;
+  height: 30px;   
+  position: absolute;
+  top:500px;
+  left:560px;
+  border: 1px solid rgba(250, 162, 20, 0.93);  
+  padding-left:19px; 
+  font-size: 20px; 
+  color: black;
+  text-align: center;
+}
+.apply:hover{
+  border:3px solid #C2B9B9;
+}
 .loader:hover{
-   
-    background-color: rgba(240, 193, 112, 0.93);
+  background-color:  #20366b;
+  color: #eae3e3;
 } 
 .footer{
-    width:1300px;
-    height:20px;
-    position:absolute;
-    left:0px;
-   margin: 90px 0px 0px 0px;}
-   /*这是最下面的版权*/
+  width:100%;
+  height:20px;
+  position:fixed;
+  left:0px;
+  margin: 50px 0px 0px 0px;
+  bottom :20px;
+}
