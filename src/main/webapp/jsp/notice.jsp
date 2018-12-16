@@ -16,7 +16,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>馆内须知</title>
+    <title>馆内须知—体育馆开馆时间</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/notice.css">
 
     <!--这是按钮组-->
@@ -27,9 +27,12 @@
         <img src="${pageContext.request.contextPath}/image/logo1.jpg" width="100" height="100"  style="border-radius:50% ;margin-top: 30px;margin-left: 35px">
     </div>
     <div class="title">
-        <p style="color:rgba(50,50,50,100);">体育馆预约系统</p></div>
+        <p style="color:rgba(50,50,50,100);">体育馆预约系统</p>
+    </div>
     <div class="today">
-        <iframe width="300" scrolling="no" height="65" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&id=10&icon=1&num=3"></iframe></div>
+        <iframe width="300" scrolling="no" height="65" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&id=10&icon=1&num=3"></iframe>
+    </div>
+    <div class="loginOut"><a href="${pageContext.request.contextPath}/links/login" >退出登录</a></div>
     <div class="sub_notice">
         <ul>
             <li style="float:left ;list-style: none;">
@@ -48,8 +51,8 @@
         <li><a href="${pageContext.request.contextPath}/links/personal"  >个人中心</a></li>
         <li><a href="${pageContext.request.contextPath}/links/applyEquipment" >器材申请</a></li>
         <li><a href="${pageContext.request.contextPath}/links/applyArea"  >场地申请</a></li>
-        <li><a href="${pageContext.request.contextPath}/links/SportActivity" style="background-color: #E6E6FA;">馆内通知</a></li>
-        <li><a href="${pageContext.request.contextPath}/links/notice">馆内须知</a></li>
+        <li><a href="${pageContext.request.contextPath}/links/SportActivity" >馆内通知</a></li>
+        <li><a href="${pageContext.request.contextPath}/links/notice" style="background-color: #E6E6FA;">馆内须知</a></li>
     </ul>
 </div>
 <div class="main">

@@ -16,8 +16,9 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>个人中心—我的资料</title>
+    <title>个人中心—资料修改</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/notice.css">
+    <script src="${pageContext.request.contextPath}/js/jquery-3.2.1.js"></script>
 </head>
 <body>
 <div class="top">
@@ -55,29 +56,58 @@
         <img src="${pageContext.request.contextPath}/image/logo1.jpg" width="100" height="100"  style="border-radius:50% ;margin-top: 30px;margin-left: 35px">
     </div>
     <div class="MyInfo">
-        </br>
-        </br>
-        <c:forEach var="user" items="${user}">
-            <p>姓名：${user.user_name}</p>
-            <p>性别：${user.user_sex}</p>
-            <p>手机号码：${user.user_phone}</p>
-            <p>住址：${user.user_address}</p>
-        </c:forEach>
-        <%----%>
-        <%--<p>昵称：啦啦啦</p>--%>
-        <%--<p>性别：女</p>--%>
-        <%--<p>出生日期：2018-12-07</p>--%>
-        <%--<p>手机号码：1234567890</p>--%>
-        <%--<p>住址：广东工业大学大学龙洞校区</p>--%>
-        <%--<p>信用：100分</p>--%>
-        </br>
+        <form id="editForm">
+            <c:forEach var="user" items="${user}">
+                <p>姓名：<input class="ntext" type="user" name="user_name" placeholder="请输入姓名" value="${user.user_name}"></p>
+                <p >性别：<input name="user_sex" type="radio" value="男" />男
+                    <input name="user_sex" type="radio" value="女" />女</p>
+                <p>手机号码：<input class="ntext" type="user" name="user_phone" placeholder="请输入手机号码"  value="${user.user_phone}"></p>
+                <p>住址：<input class="ptext" type="user"name="user_address" placeholder="请输入地址" value="${user.user_address}"></p>
+                </br></br>
+            </c:forEach>
+        </form>
     </div>
-    <button class="loader" type=" " ><a href="${pageContext.request.contextPath}/links/personal3" >修改资料</a></button>
+    <button type="button" class="loader" onclick="userEdit()">确定修改</button>
 </div>
 <!-- 底部-->
 <div class="footer" style="background-color:#008c9e">
     <center><font color="＃2d2d2d" >版权所有@ 场地管理系统</font></center>
 </div>
-<!--版权模块-->
+<script>
+    // 修改用户资料
+    function userEdit(){
+        console.log($("#editForm").serialize());
+        // 数据表字段
+        // user_phone: 手机号码  name="user_phone"
+        // user_name: 姓名 name=user_name
+        // user_sex：性别 name="user_sex"
+        // user_address：地址 name="user_address"
+        $.ajax({
+            type : "post",
+            // url :
+            contentType : "application/json; charset=utf-8",
+            dataType : "json",
+            data : $("#editForm").serialize(),
+            success : function(data) {
+                alert("修改成功")
+                // 跳转到 window.location.href="${pageContext.request.contextPath}/links/personal2";
+                window.location.href="${pageContext.request.contextPath}/links/personal2";
+            },
+            error : function(data) {
+
+            }
+        });
+    };
+    function changeSex(){
+        var radio =document.getElementsByName("user_sex");
+        for(var i =0;i < radio.length;i++){
+            radio[i].removeAttribute('checked');
+            if(radio[i].checked){
+                radio[i].setAttribute('checked',"checked");
+                var sex = radio[i].value;
+            }
+        }
+    }
+</script>
 </body>
 </html>

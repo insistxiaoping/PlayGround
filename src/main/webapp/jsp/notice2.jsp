@@ -16,9 +16,8 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>场地/器材使用规则</title>
+    <title>馆内须知—场地/器材使用规则</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/notice.css">
-
     <!--这是按钮组-->
 </head>
 <body>
@@ -27,15 +26,18 @@
         <img src="${pageContext.request.contextPath}/image/logo1.jpg" width="100" height="100" style="border-radius:50% ;margin-top: 30px;margin-left: 35px">
     </div>
     <div class="title">
-        <p style="color:rgba(50,50,50,100);">体育馆预约系统</p></div>
+        <p style="color:rgba(50,50,50,100);">体育馆预约系统</p>
+    </div>
     <div class="today">
-        <iframe width="300" scrolling="no" height="65" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&id=10&icon=1&num=3"></iframe></div>
-     <div class="sub_notice">
+        <iframe width="300" scrolling="no" height="65" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&id=10&icon=1&num=3"></iframe>
+    </div>
+    <div class="loginOut"><a href="${pageContext.request.contextPath}/links/login" >退出登录</a></div>
+    <div class="sub_notice">
         <ul>
             <li style="float:left ;list-style: none;">
-                <a  href="${pageContext.request.contextPath}/links/notice" style="background-color: #E6E6FA;">体育馆开馆时间</a></li>
+                <a  href="${pageContext.request.contextPath}/links/notice">体育馆开馆时间</a></li>
             <li style="float:left ;list-style: none;">
-                <a href="${pageContext.request.contextPath}/links/notice2" >场地/器材使用规则</a></li>
+                <a href="${pageContext.request.contextPath}/links/notice2"  style="background-color: #E6E6FA;">场地/器材使用规则</a></li>
             <li style="float:left ;list-style: none;">
                 <a href="${pageContext.request.contextPath}/links/notice3">联系我们</a></li>
         </ul>
@@ -56,62 +58,56 @@
         <li><a href="${pageContext.request.contextPath}/links/personal"  >个人中心</a></li>
         <li><a href="${pageContext.request.contextPath}/links/applyEquipment" >器材申请</a></li>
         <li><a href="${pageContext.request.contextPath}/links/applyArea"  >场地申请</a></li>
-        <li><a href="${pageContext.request.contextPath}/links/SportActivity" style="background-color: #E6E6FA;">馆内通知</a></li>
-        <li><a href="${pageContext.request.contextPath}/links/notice">馆内须知</a></li>
+        <li><a href="${pageContext.request.contextPath}/links/SportActivity" >馆内通知</a></li>
+        <li><a href="${pageContext.request.contextPath}/links/notice" style="background-color: #E6E6FA;">馆内须知</a></li>
     </ul>
 </div>
 <div class="main">
     <from>
-        <table style="font-size: 15px">
-            <td >类别: </td>
-            <td><select name="type_choo" style="font-size: 15px">
-                <option value="1">器材</option>
-                <option value="2">场地</option>
-            </select></td></table>
+        <%--<table style="font-size: 15px">--%>
+            <%--<td >类别: </td>--%>
+            <%--<td><select name="type_choo" style="font-size: 15px">--%>
+                <%--<option value="1">器材</option>--%>
+                <%--<option value="2">场地</option>--%>
+            <%--</select></td></table>--%>
         <div class="table-head">
             <table border="1" cellspacing="0" cellpadding="10" width="1000">
                 <colgroup>
-                    <col style="width:80px;"/>
                     <col style="width:90px;"/>
                     <col style="width:200px;"/>
                     <col style="width:90px;"/>
                 </colgroup>
                 <tbody>
-                <tr>
-                    <td style="background-color:#008c9e;">类别 </td>
-                    <td style="background-color:#008c9e;">项目</td>
-                    <td style="background-color:#008c9e;">使用规则 </td>
-                    <td style="background-color:#008c9e;">发布时间</td>
-                </tr></tbody></table></div>
+                    <tr>
+                        <td style="background-color:#008c9e;">项目</td>
+                        <td style="background-color:#008c9e;">使用规则 </td>
+                        <td style="background-color:#008c9e;">发布时间</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <div class="table-body">
             <table border="1" cellspacing="0" cellpadding="10" width="1000">
                 <colgroup>
-                    <col style="width:80px;"/>
                     <col style="width:90px;"/>
                     <col style="width:200px;"/>
                     <col style="width:90px;"/>
                 </colgroup>
                 <tbody>
-                <tr>
-                    <td >器材</td>
-                    <td>${gm.notice_title}</td>
-                    <td>${gm.notice_descrip}</td>
-                    <td>${gm.notice_time}</td>
-     </tr>
-     <tr>
-     <td >器材</td>
-     <td>${gm.notice_title}</td>
-        <td>${gm.notice_descrip}${gm.notice_descrip}${gm.notice_descrip}</td>
-        <td>${gm.notice_time}</td>
-        </tr>
-        </tbody>
-        </table>
+                <c:forEach var="notice" items="${rule}">
+                    <tr>
+                        <td>${notice.notice_title}</td>
+                        <td>${notice.notice_descrip}</td>
+                        <td>${notice.notice_date}</td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
         </div>
-        </from>
-        </div>
-        <div class="footer" style="background-color:#008c9e">
-        <center><font color="＃2d2d2d" >版权所有@ 场地管理系统</font></center>
-        </div>
-        <!--版权模块-->
-        </body>
+    </from>
+</div>
+<div class="footer" style="background-color:#008c9e">
+    <center><font color="＃2d2d2d" >版权所有@ 场地管理系统</font></center>
+</div>
+</body>
 </html>

@@ -18,9 +18,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>申请器材</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/notice.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">  
+    <%--<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">  --%>
     <script src="${pageContext.request.contextPath}/js/jquery-3.2.1.js"></script>   
-    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script> 
+    <%--<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script> --%>
 
 </head>
 <body>
@@ -30,12 +30,10 @@
     </div>
     <div class="title">
         <p style="color:rgba(50,50,50,100);">体育馆预约系统</p></div>
-
     <div class="today">
-        <iframe width="300" scrolling="no" height="65" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&id=10&icon=1&num=3">
-
-        </iframe>
-        </div>
+        <iframe width="300" scrolling="no" height="65" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&id=10&icon=1&num=3"></iframe>
+    </div>
+    <div class="loginOut"><a href="${pageContext.request.contextPath}/links/login" >退出登录</a></div>
 </div>
 <div class="left_nav">
      <ul>
@@ -48,14 +46,20 @@
     </ul>
 </div>
 <div class="main">
-        <form id="applyForm" style="font-size: 25px;color:rgba(50,50,50,100);">
-        选择日期:&nbsp;&nbsp;&nbsp;&nbsp;<input type="date" name="txtDate"></br></br>
-        选择时段： 
-        <label><input name="time" type="checkbox" value="8:00-10:00" />8:00-10:00 </label> 
-        <label><input name="time" type="checkbox" value="10:00-12:00" />10:00-12:00 </label> 
-        <label><input name="time" type="checkbox" value="14:00-16:00" />14:00-16:00 </label> 
-        <label><input name="time" type="checkbox" value="16:00-18:00" />16:00-18:00</label> 
-        <label><input name="time" type="checkbox" value="18:00-20:00" />18:00-20:00</label>
+    <form id="applyForm" style="font-size: 25px;color:rgba(50,50,50,100);">
+        选择日期:&nbsp;&nbsp;&nbsp;&nbsp;<input type="date" name="apply_date" value=""></br></br>
+        选择时段
+        <%--<label><input name="apply_time" type="checkbox" value="8:00-10:00 " /> 8:00-10:00 </label>--%>
+        <%--<label><input name="apply_time" type="checkbox" value="10:00-12:00" /> 10:00-12:00 </label>--%>
+        <%--<label><input name="apply_time" type="checkbox" value="14:00-16:00" /> 14:00-16:00 </label>--%>
+        <%--<label><input name="apply_time" type="checkbox" value="16:00-18:00" /> 16:00-18:00</label>--%>
+        <%--<label><input name="apply_time" type="checkbox" value="18:00-20:00" /> 18:00-20:00</label>--%>
+
+        <label><input name="apply_time" type="radio" value="8:00:00-10:00:00" /> 8:00-10:00 </label>
+        <label><input name="apply_time" type="radio" value="10:00:00-12:00:00" /> 10:00-12:00 </label>
+        <label><input name="apply_time" type="radio" value="14:00:00-16:00:00" /> 14:00-16:00 </label>
+        <label><input name="apply_time" type="radio" value="16:00:00-18:00:00" /> 16:00-18:00</label>
+        <label><input name="apply_time" type="radio" value="18:00:000-20:00:00" /> 18:00-20:00</label>
         </br></br>
      选择器材：
         <div class="main_form">
@@ -71,8 +75,7 @@
             <input  type="text" size="12" name="wqiu" value="" maxlength="3" placeholder="请输入数量">
             网球拍&nbsp;&nbsp;&nbsp;
             <input  type="text" size="12" name="wqpai" value="" maxlength="3" placeholder="请输入数量">
-                <button  type="button" onclick="applyEquipment()">提交</button>       
-            </div>
+            <button  type="button" onclick="applyEquipment()">提交</button>
         </div>
     </form> 
 </div>
@@ -84,11 +87,12 @@
     function applyEquipment(){
         // 数据库表字段
         // apply_id：自增
-        // apply_user_id
+        // apply_user_id：
         // apply_equip_id：对应 name，比如网球拍的id 是 wqpai
         // apply_date：格式：2018-12-20
-        // apply_time  格式： 8:00-10:00
-        // apply_pay： 数量*乘10
+        // start_time  格式：8:00:00  apply_time 字符串 “-”之前的字符
+        // end_time    格式：8:00:00  apply_time 字符串 “-”之后的字符
+        // apply_pay： 申请数量*乘10
         // apply_paid：0
         console.log($("#applyForm").serialize());
         var ymqiuNum = parseInt($('input[name="ymqiu"]').val())?parseInt($('input[name="ymqiu"]').val()):0;
@@ -105,12 +109,13 @@
             // url : ,
             contentType : "application/json; charset=utf-8",
             dataType : "json",
-            data : data
+            data : data,
             success : function(data) {
-                 alert("申请成功");
+                alert("申请成功");
+                window.location.href="${pageContext.request.contextPath}/links/applyEquipment";
             },
             error : function(data) {
-                alert("登陆失败");
+                alert("申请失败");
             }
         });
     }

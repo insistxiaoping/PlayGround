@@ -2,93 +2,76 @@
 .top{
   width: 768px;
   height: 200px;
-  margin:20px auto 200px auto;
+  margin:10px auto;
 }
-.text_433X1{  
-  height: 100px;
-  left: 600px;
-  top: 400px;
-  color: rgba(0, 0, 0, 1);
-  font-size: 55px;
-  line-height: 150%;
-  text-align: center;
-}
-  /*top最上面的--整体分上中下结构，上面标题，中间登录，下面版权*/
-/*  .register_box{
-    width: 500px;
-    height: 450px;
-    padding: 35px;
-    color: red;
-    position: absolute;
-    left: 44%;
-    top:380px;
-    margin-left: -200px;
-    margin-top: -250px; 
-  }*/
-.register_box{
+/*top最上面的--整体分上中下结构，上面暂无内容，中间登录，下面版权*/
+.login{
   background:#eae3e3;
   opacity: .9;
-  width:468px; 
-  height:500px;
+  width:468px;
+  height:420px;
   position:absolute;
   left: 0;
   right: 0;
   top: 0;
   bottom: 0;
   margin:auto;
-  font-size: 14px;
-  color: #20366b;
 }
-.boxtitle{
-  width: 280px;
-  height: 40px;
+.choose ul {
+  list-style: none;
+  height: 30px;
+  font-size: 20px;
   line-height: 40px;
-  font-size: 24px;
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
+
+}
+.choose ul li {
+  cursor: pointer;
+  float: left;
+  list-style: none;
+  height: 35px;
+  padding: 0px 50px;
   color: #20366b;
 }
-.register_box div{
-  margin-top:20px;
+li:hover{
+  border-bottom:3px solid  #20366b;
 }
-.box_row{
-  width:500px;
-  height:40px;
-  left: 47%;
-  top:500px;
-}
-.registerbox{
-  margin-left: 50px;
-  position: absolute;
-}
-.box_row .ntext,
-.box_row .ptext{
-  line-height: 30px;
-  width:250px;  
-  position: absolute;
-  left: 100px;
-  margin-top: -10px;
-}
-
-/*  .reg{  width:450px;  height:auto;  margin:0 auto;  padding-top:100px;} 
-  .topic{ background:url(../images/denj_top.jpg); width:450px;  height:54px;}
-  .content{  border:1px solid #DBDBDB; color:#003976;  background:#F9F9F9; text-align:center}
-*/
-
 .hidden{
   display: none;
+}
+.funct .name{
+  color: #302C2C;
+  font-size: 15px;
+  margin-left: 100px;
+  margin-top:50px;
+  top:30px;
+  margin-bottom: 5px;
+  color: #20366b;
+}
+.funct .passw{
+  color: #302C2C;
+  font-size: 15px;
+  margin-left: 100px;
+  margin-top:10px;
+  margin-bottom: 5px;
+  color: #20366b;
+}
+.funct .ntext{
+  line-height: 30px;
+  width:250px;
+  color: #20366b;
+  position: absolute;
+  left: 100px;
+}
+.funct .ptext{
+  line-height: 30px;
+  width:250px;
+  color: #20366b;
+  position: absolute;
+  left: 100px;
 }
 .ntext:focus,.ptext:focus{
   box-shadow: 1px 0px 3px 1px #C2B9B9;
 }
-.genderbox{
-  margin-top: -20px !important;
-  width: 200px;
-  position: absolute;
-  left: 100px;
-}
- 
 .loader{
   width:250px;
   height: 40px;
@@ -96,8 +79,8 @@
   position: absolute;
   left: 100px;
   padding: 0px 30px;
-  font-size: 20px; 
-  top: 120%;  
+  font-size: 20px;
+  top: 63%;
 }
 .nosign{
   text-align: center;
@@ -105,28 +88,52 @@
 }
 .apply{
   width:240px;
-  height: 30px;   
+  height: 30px;
   position: absolute;
-  top:500px;
+  top:560px;
   left:560px;
-  border: 1px solid rgba(250, 162, 20, 0.93);  
-  padding-left:19px; 
-  font-size: 20px; 
+  border: 1px solid rgba(250, 162, 20, 0.93);
+  padding-left:19px;
+  font-size: 20px;
   color: black;
   text-align: center;
+
 }
 .apply:hover{
   border:3px solid #C2B9B9;
 }
+
 .loader:hover{
   background-color:  #20366b;
   color: #eae3e3;
-} 
+}
 .footer{
-  width:100%;
+  width:1300px;
   height:20px;
-  position:fixed;
-  left:0px;
-  margin: 50px 0px 0px 0px;
-  bottom :20px;
+  position:absolute;
+  bottom: 2%;
+  color: #fff;
+}
+/* 注册和忘记密码*/
+a{
+  text-decoration: none;
+}
+.registerbtn{
+  position: absolute;
+  margin-left: 110px;
+  margin-top:35px;
+  width: 120px;
+  color: #20366b;
+  height: 50px;
+}
+.registerbtn a{
+  color: #20366b;
+}
+.forgetbtn{
+  position: absolute;
+  margin-left: 280px;
+  margin-top:35px;
+  width: 120px;
+  height: 50px;
+  color: #20366b;
 }

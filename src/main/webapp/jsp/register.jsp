@@ -33,8 +33,8 @@ background-attachment:fixed;">
                     <div>密码：<input class="ptext" type="password" name="user_password"placeholder="请输入密码"></div></br> 
                     <div >性别： 
                         <div class="genderbox">
-                            <input name="user_sex" type="radio" value="male" onchange="changeSex();"/>男&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <input  name="user_sex" type="radio" value="female" onchange="changeSex();"/>女</div>
+                            <input name="user_sex" type="radio" value="男" onchange="changeSex();"/>男&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input  name="user_sex" type="radio" value="女" onchange="changeSex();"/>女</div>
                         </div>
                     <div>住址：<input class="ptext
                     " type="user" name="user_address" placeholder="请输入住址"></div>
@@ -54,7 +54,7 @@ background-attachment:fixed;">
           // user_address：地址 name="user_address"
           // user_password：密码 name="user_password"
            $.ajax({
-              type : post,
+              type : "post",
               // url : 项目url/login,
               contentType : "application/json; charset=utf-8",
               dataType : "json",

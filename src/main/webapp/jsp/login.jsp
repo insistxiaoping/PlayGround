@@ -16,8 +16,8 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>场地管理系统</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css">
+    <title>登录</title>
+    <link href="${pageContext.request.contextPath}/css/login.css" rel="stylesheet">
     <script src="${pageContext.request.contextPath}/js/jquery-3.2.1.js"></script>
 </head>
 <body background="${pageContext.request.contextPath}/image/体育馆背景.jpg" style=" background-repeat:no-repeat ;
@@ -49,7 +49,7 @@ background-attachment:fixed;">
                         <input class="ntext" type="text" name="managerName" placeholder="请输入管理员登录名" /><br/> <br/>
                         <p class="passw" >密码</p>
                         <input class="ptext" type="password" name="managerPassword" placeholder="请输入密码" autocomplete="of"/><br/><br/>
-                       <button class="loader" type="button" onclick="managerLoad()" name="manager_Load"  value="manager_Load">登录</button><br/><br/>                     
+                        <button class="loader" type="button" onclick="managerLoad()" name="manager_Load"  value="manager_Load">登录</button><br/><br/>
                 </div>
             </form>  
         </div>
@@ -76,9 +76,8 @@ background-attachment:fixed;">
         // 参数name： userName，userPassword
         // 数据库的用户信息：user 123
         // window.location.href="file:///E:/Study/%E5%A4%A7%E5%9B%9B/%E4%B8%93%E4%B8%9A%E7%BB%BC%E5%90%88%E8%AE%BE%E8%AE%A1/%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%95%8C%E9%9D%A2/%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%95%8C%E9%9D%A2/%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%95%8C%E9%9D%A2/home.html";
-        
          $.ajax({
-            type : post,
+            type : "post",
             // url : ,
             contentType : "application/json; charset=utf-8",
             dataType : "json",
@@ -87,7 +86,7 @@ background-attachment:fixed;">
                 window.location.href="${pageContext.request.contextPath}/links/home";
             },
             error : function(data) {
-                alert("登陆失败");
+                console.log("登陆失败");
             }
         });
     }

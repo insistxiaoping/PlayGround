@@ -16,7 +16,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>通知-体育类活动</title>
+    <title>馆内通知-体育类活动</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/notice.css">
 </head>
 <body>
@@ -29,6 +29,7 @@
     <div class="today">
         <iframe width="300" scrolling="no" height="65" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&id=10&icon=1&num=3"></iframe>
     </div>
+    <div class="loginOut"><a href="${pageContext.request.contextPath}/links/login" >退出登录</a></div>
     <div class="sub_notice">
         <ul>
             <li style="float:left ;list-style: none;">
@@ -53,19 +54,53 @@
 </div>
 <div class="main">
 
-    <table width="56%">
-        <tr>
-            <th>标题</th>
-            <th>时间</th>
-            <th>内容</th>
-        </tr>
-        <tr>
-            <td>${gm.activity_title}</td>
-            <td>${gm.activity_time}</td>
-            <td>${gm.activity_descrip}</td>
-        </tr>
+    <%--<table width="56%">--%>
+        <%--<tr>--%>
+            <%--<th>标题</th>--%>
+            <%--<th>时间</th>--%>
+            <%--<th>内容</th>--%>
+        <%--</tr>--%>
+        <%--<tr>--%>
+            <%--<td>${gm.activity_title}</td>--%>
+            <%--<td>${gm.activity_time}</td>--%>
+            <%--<td>${gm.activity_descrip}</td>--%>
+        <%--</tr>--%>
 
-    </table>
+    <%--</table>--%>
+        <div class="table-head">
+            <table border="1" cellspacing="0" cellpadding="10" width="1000">
+                <colgroup>
+                    <col style="width:90px;"/>
+                    <col style="width:200px;"/>
+                    <col style="width:90px;"/>
+                </colgroup>
+                <tbody>
+                <tr>
+                    <td style="background-color:#008c9e;">活动标题</td>
+                    <td style="background-color:#008c9e;">活动内容 </td>
+                    <td style="background-color:#008c9e;">活动时间</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="table-body">
+            <table border="1" cellspacing="0" cellpadding="10" width="1000">
+                <colgroup>
+                    <col style="width:90px;"/>
+                    <col style="width:200px;"/>
+                    <col style="width:90px;"/>
+                </colgroup>
+                <tbody>
+                    <c:forEach var="activity" items="${sportActivity}">
+                        <tr>
+                            <td>${activity.activity_title}</td>
+                            <td>${activity.activity_descripe}</td>
+                            <td>${activity.activity_date}</td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
+        </div>
 </div>
 </div>
 <div class="footer" style="background-color:#008c9e">
