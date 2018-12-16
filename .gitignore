@@ -1,2 +1,10 @@
 .idea/
 /pm.iml
+/.classpath
+/.project
+/pom.xml
+/target/
+/.settings/
+target/PermissionManager/META-INF/
+target/generated-sources/
+target/generated-test-sources/
