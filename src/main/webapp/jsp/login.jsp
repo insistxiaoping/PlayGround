@@ -31,19 +31,19 @@ background-attachment:fixed;">
             </ul>
         </div>
         <div id="content" class="userlogin ">
-            <form id="userForm">
+            <form id="userForm" method="post">
                 <div id="user" class="funct">
                     <p class="name"> 用户名</p>
-                    <input class="ntext" type="text" name="userName" placeholder="请输入用户名" autocomplete="of"/><br/> <br/> <p class="passw"> 密码</p>
-                    <input class="ptext" type="password" name="userPassword" placeholder="请输入密码" autocomplete="of"/><br/> <br/> 
+                    <input class="ntext" type="text" id = "userId"  name="userId" placeholder="请输入用户名" autocomplete="of"/><br/> <br/> <p class="passw"> 密码</p>
+                    <input class="ptext" type="password" id = "userPassword" name="userPassword" placeholder="请输入密码" autocomplete="of"/><br/> <br/>
                     <button class="loader" type="button" onclick="userLoad()" name="user_Load"  value="user_Load" >登录</button> <br/> <br/>
-                    <div  class="registerbtn"><a  href="register.html">注册</a></div>
+                    <div  class="registerbtn"><a  href="${pageContext.request.contextPath}/links/register">注册</a></div>
                     <div class="forgetbtn">忘记密码</div>
                     <!-- <p class="nosign">—— 没有账户？——</p><br/><br/> -->
                     <!-- <a class="apply" href="register.html">新建账户</a>                    -->
                 </div>
             </form> 
-            <form id="managerForm">   
+            <form id="managerForm" method="post">
                 <div id="manager" class="funct hidden">
                         <p class="name"> 管理员名</p>
                         <input class="ntext" type="text" name="managerName" placeholder="请输入管理员登录名" /><br/> <br/>
@@ -72,18 +72,23 @@ background-attachment:fixed;">
     }
     // 用户登录 
     function userLoad(){
-        console.log($("#userForm").serialize());
-        // 参数name： userName，userPassword
-        // 数据库的用户信息：user 123
+        // console.log($("#userForm").serialize());
+        var userId = $("#userId").val();
+        var userPassword = $("#userPassword").val();
+        // 参数name： userId，userPassword
+        // 数据库的用户信息：user 1232
         // window.location.href="file:///E:/Study/%E5%A4%A7%E5%9B%9B/%E4%B8%93%E4%B8%9A%E7%BB%BC%E5%90%88%E8%AE%BE%E8%AE%A1/%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%95%8C%E9%9D%A2/%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%95%8C%E9%9D%A2/%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%95%8C%E9%9D%A2/home.html";
          $.ajax({
-            type : "post",
-            // url : ,
-            contentType : "application/json; charset=utf-8",
-            dataType : "json",
-            data : $("#userForm").serialize(),
+             type : "post",
+             url :"${pageContext.request.contextPath}/users/"+userId+"/"+userPassword+"/login",
+             contentType : "application/json; charset=utf-8",
+             dataType : "json",
             success : function(data) {
-                window.location.href="${pageContext.request.contextPath}/links/home";
+                 if (data.result ="success"){
+                     window.location.href="${pageContext.request.contextPath}/links/home";
+                 }else{
+                     alert("检查输入信息！")
+                 }
             },
             error : function(data) {
                 console.log("登陆失败");

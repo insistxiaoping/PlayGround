@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.td.lp.mapper.PersonScheduleMapper" >
-  <resultMap id="BaseResultMap" type="com.td.lp.bean.PersonSchedule" >
-    <id column="personSchedule_id" property="personscheduleId" jdbcType="INTEGER" />
-    <result column="personSchedule_data" property="personscheduleData" jdbcType="VARCHAR" />
+<mapper namespace="com.td.pm.mapper.FineMapper" >
+  <resultMap id="BaseResultMap" type="com.td.pm.bean.Fine" >
+    <id column="fine_id" property="fineId" jdbcType="INTEGER" />
+    <result column="fine_user_id" property="fineUserId" jdbcType="VARCHAR" />
+    <result column="fine_pay" property="finePay" jdbcType="INTEGER" />
+    <result column="fine_paid" property="finePaid" jdbcType="INTEGER" />
+    <result column="fine_descripe" property="fineDescripe" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -64,15 +67,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    personSchedule_id, personSchedule_data
+    fine_id, fine_user_id, fine_pay, fine_paid, fine_descripe
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.td.lp.bean.PersonScheduleExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.td.pm.bean.FineExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from personschedule
+    from fine
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -83,58 +86,85 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from personschedule
-    where personSchedule_id = #{personscheduleId,jdbcType=INTEGER}
+    from fine
+    where fine_id = #{fineId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from personschedule
-    where personSchedule_id = #{personscheduleId,jdbcType=INTEGER}
+    delete from fine
+    where fine_id = #{fineId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.td.lp.bean.PersonScheduleExample" >
-    delete from personschedule
+  <delete id="deleteByExample" parameterType="com.td.pm.bean.FineExample" >
+    delete from fine
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.td.lp.bean.PersonSchedule" >
-    insert into personschedule (personSchedule_id, personSchedule_data
-      )
-    values (#{personscheduleId,jdbcType=INTEGER}, #{personscheduleData,jdbcType=VARCHAR}
-      )
+  <insert id="insert" parameterType="com.td.pm.bean.Fine" >
+    insert into fine (fine_id, fine_user_id, fine_pay, 
+      fine_paid, fine_descripe)
+    values (#{fineId,jdbcType=INTEGER}, #{fineUserId,jdbcType=VARCHAR}, #{finePay,jdbcType=INTEGER}, 
+      #{finePaid,jdbcType=INTEGER}, #{fineDescripe,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.td.lp.bean.PersonSchedule" >
-    insert into personschedule
+  <insert id="insertSelective" parameterType="com.td.pm.bean.Fine" >
+    insert into fine
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="personscheduleId != null" >
-        personSchedule_id,
+      <if test="fineId != null" >
+        fine_id,
       </if>
-      <if test="personscheduleData != null" >
-        personSchedule_data,
+      <if test="fineUserId != null" >
+        fine_user_id,
+      </if>
+      <if test="finePay != null" >
+        fine_pay,
+      </if>
+      <if test="finePaid != null" >
+        fine_paid,
+      </if>
+      <if test="fineDescripe != null" >
+        fine_descripe,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="personscheduleId != null" >
-        #{personscheduleId,jdbcType=INTEGER},
+      <if test="fineId != null" >
+        #{fineId,jdbcType=INTEGER},
       </if>
-      <if test="personscheduleData != null" >
-        #{personscheduleData,jdbcType=VARCHAR},
+      <if test="fineUserId != null" >
+        #{fineUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="finePay != null" >
+        #{finePay,jdbcType=INTEGER},
+      </if>
+      <if test="finePaid != null" >
+        #{finePaid,jdbcType=INTEGER},
+      </if>
+      <if test="fineDescripe != null" >
+        #{fineDescripe,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.td.lp.bean.PersonScheduleExample" resultType="java.lang.Integer" >
-    select count(*) from personschedule
+  <select id="countByExample" parameterType="com.td.pm.bean.FineExample" resultType="java.lang.Integer" >
+    select count(*) from fine
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update personschedule
+    update fine
     <set >
-      <if test="record.personscheduleId != null" >
-        personSchedule_id = #{record.personscheduleId,jdbcType=INTEGER},
+      <if test="record.fineId != null" >
+        fine_id = #{record.fineId,jdbcType=INTEGER},
       </if>
-      <if test="record.personscheduleData != null" >
-        personSchedule_data = #{record.personscheduleData,jdbcType=VARCHAR},
+      <if test="record.fineUserId != null" >
+        fine_user_id = #{record.fineUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.finePay != null" >
+        fine_pay = #{record.finePay,jdbcType=INTEGER},
+      </if>
+      <if test="record.finePaid != null" >
+        fine_paid = #{record.finePaid,jdbcType=INTEGER},
+      </if>
+      <if test="record.fineDescripe != null" >
+        fine_descripe = #{record.fineDescripe,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -142,25 +172,40 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update personschedule
-    set personSchedule_id = #{record.personscheduleId,jdbcType=INTEGER},
-      personSchedule_data = #{record.personscheduleData,jdbcType=VARCHAR}
+    update fine
+    set fine_id = #{record.fineId,jdbcType=INTEGER},
+      fine_user_id = #{record.fineUserId,jdbcType=VARCHAR},
+      fine_pay = #{record.finePay,jdbcType=INTEGER},
+      fine_paid = #{record.finePaid,jdbcType=INTEGER},
+      fine_descripe = #{record.fineDescripe,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.td.lp.bean.PersonSchedule" >
-    update personschedule
+  <update id="updateByPrimaryKeySelective" parameterType="com.td.pm.bean.Fine" >
+    update fine
     <set >
-      <if test="personscheduleData != null" >
-        personSchedule_data = #{personscheduleData,jdbcType=VARCHAR},
+      <if test="fineUserId != null" >
+        fine_user_id = #{fineUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="finePay != null" >
+        fine_pay = #{finePay,jdbcType=INTEGER},
+      </if>
+      <if test="finePaid != null" >
+        fine_paid = #{finePaid,jdbcType=INTEGER},
+      </if>
+      <if test="fineDescripe != null" >
+        fine_descripe = #{fineDescripe,jdbcType=VARCHAR},
       </if>
     </set>
-    where personSchedule_id = #{personscheduleId,jdbcType=INTEGER}
+    where fine_id = #{fineId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.td.lp.bean.PersonSchedule" >
-    update personschedule
-    set personSchedule_data = #{personscheduleData,jdbcType=VARCHAR}
-    where personSchedule_id = #{personscheduleId,jdbcType=INTEGER}
+  <update id="updateByPrimaryKey" parameterType="com.td.pm.bean.Fine" >
+    update fine
+    set fine_user_id = #{fineUserId,jdbcType=VARCHAR},
+      fine_pay = #{finePay,jdbcType=INTEGER},
+      fine_paid = #{finePaid,jdbcType=INTEGER},
+      fine_descripe = #{fineDescripe,jdbcType=VARCHAR}
+    where fine_id = #{fineId,jdbcType=INTEGER}
   </update>
 </mapper>

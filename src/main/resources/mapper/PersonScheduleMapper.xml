@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.td.lp.mapper.BusinessMapper" >
-  <resultMap id="BaseResultMap" type="com.td.lp.bean.Business" >
-    <id column="business_id" property="businessId" jdbcType="INTEGER" />
-    <result column="business_data" property="businessData" jdbcType="VARCHAR" />
+<mapper namespace="com.td.pm.mapper.PersonScheduleMapper" >
+  <resultMap id="BaseResultMap" type="com.td.pm.bean.PersonSchedule" >
+    <id column="personSchedule_id" property="personscheduleId" jdbcType="INTEGER" />
+    <result column="personSchedule_data" property="personscheduleData" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -64,15 +64,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    business_id, business_data
+    personSchedule_id, personSchedule_data
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.td.lp.bean.BusinessExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.td.pm.bean.PersonScheduleExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from business
+    from personschedule
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -83,56 +83,58 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from business
-    where business_id = #{businessId,jdbcType=INTEGER}
+    from personschedule
+    where personSchedule_id = #{personscheduleId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from business
-    where business_id = #{businessId,jdbcType=INTEGER}
+    delete from personschedule
+    where personSchedule_id = #{personscheduleId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.td.lp.bean.BusinessExample" >
-    delete from business
+  <delete id="deleteByExample" parameterType="com.td.pm.bean.PersonScheduleExample" >
+    delete from personschedule
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.td.lp.bean.Business" >
-    insert into business (business_id, business_data)
-    values (#{businessId,jdbcType=INTEGER}, #{businessData,jdbcType=VARCHAR})
+  <insert id="insert" parameterType="com.td.pm.bean.PersonSchedule" >
+    insert into personschedule (personSchedule_id, personSchedule_data
+      )
+    values (#{personscheduleId,jdbcType=INTEGER}, #{personscheduleData,jdbcType=VARCHAR}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.td.lp.bean.Business" >
-    insert into business
+  <insert id="insertSelective" parameterType="com.td.pm.bean.PersonSchedule" >
+    insert into personschedule
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="businessId != null" >
-        business_id,
+      <if test="personscheduleId != null" >
+        personSchedule_id,
       </if>
-      <if test="businessData != null" >
-        business_data,
+      <if test="personscheduleData != null" >
+        personSchedule_data,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="businessId != null" >
-        #{businessId,jdbcType=INTEGER},
+      <if test="personscheduleId != null" >
+        #{personscheduleId,jdbcType=INTEGER},
       </if>
-      <if test="businessData != null" >
-        #{businessData,jdbcType=VARCHAR},
+      <if test="personscheduleData != null" >
+        #{personscheduleData,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.td.lp.bean.BusinessExample" resultType="java.lang.Integer" >
-    select count(*) from business
+  <select id="countByExample" parameterType="com.td.pm.bean.PersonScheduleExample" resultType="java.lang.Integer" >
+    select count(*) from personschedule
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update business
+    update personschedule
     <set >
-      <if test="record.businessId != null" >
-        business_id = #{record.businessId,jdbcType=INTEGER},
+      <if test="record.personscheduleId != null" >
+        personSchedule_id = #{record.personscheduleId,jdbcType=INTEGER},
       </if>
-      <if test="record.businessData != null" >
-        business_data = #{record.businessData,jdbcType=VARCHAR},
+      <if test="record.personscheduleData != null" >
+        personSchedule_data = #{record.personscheduleData,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -140,25 +142,25 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update business
-    set business_id = #{record.businessId,jdbcType=INTEGER},
-      business_data = #{record.businessData,jdbcType=VARCHAR}
+    update personschedule
+    set personSchedule_id = #{record.personscheduleId,jdbcType=INTEGER},
+      personSchedule_data = #{record.personscheduleData,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.td.lp.bean.Business" >
-    update business
+  <update id="updateByPrimaryKeySelective" parameterType="com.td.pm.bean.PersonSchedule" >
+    update personschedule
     <set >
-      <if test="businessData != null" >
-        business_data = #{businessData,jdbcType=VARCHAR},
+      <if test="personscheduleData != null" >
+        personSchedule_data = #{personscheduleData,jdbcType=VARCHAR},
       </if>
     </set>
-    where business_id = #{businessId,jdbcType=INTEGER}
+    where personSchedule_id = #{personscheduleId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.td.lp.bean.Business" >
-    update business
-    set business_data = #{businessData,jdbcType=VARCHAR}
-    where business_id = #{businessId,jdbcType=INTEGER}
+  <update id="updateByPrimaryKey" parameterType="com.td.pm.bean.PersonSchedule" >
+    update personschedule
+    set personSchedule_data = #{personscheduleData,jdbcType=VARCHAR}
+    where personSchedule_id = #{personscheduleId,jdbcType=INTEGER}
   </update>
 </mapper>

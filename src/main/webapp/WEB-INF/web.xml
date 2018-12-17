@@ -5,7 +5,7 @@
 	id="WebApp_ID" version="3.0">
   <display-name>LocationPlatform</display-name>
 <welcome-file-list>
-	<welcome-file>/jsp/home.jsp</welcome-file>
+	<welcome-file>/jsp/login.jsp</welcome-file>
 </welcome-file-list>
   
   <!-- 1.spring框架 -->

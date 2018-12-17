@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.td.lp.mapper.LostFoundsMapper" >
-  <resultMap id="BaseResultMap" type="com.td.lp.bean.LostFounds" >
+<mapper namespace="com.td.pm.mapper.LostFoundsMapper" >
+  <resultMap id="BaseResultMap" type="com.td.pm.bean.LostFounds" >
     <id column="lad_id" property="ladId" jdbcType="INTEGER" />
     <result column="lad_date" property="ladDate" jdbcType="TIMESTAMP" />
     <result column="lad_descripe" property="ladDescripe" jdbcType="VARCHAR" />
@@ -71,7 +71,7 @@
   <sql id="Base_Column_List" >
     lad_id, lad_date, lad_descripe, loser_name, founder_name, lose_phone, founder_phone
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.td.lp.bean.LostFoundsExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.td.pm.bean.LostFoundsExample" >
     select
     <if test="distinct" >
       distinct
@@ -95,13 +95,13 @@
     delete from lost_founds
     where lad_id = #{ladId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.td.lp.bean.LostFoundsExample" >
+  <delete id="deleteByExample" parameterType="com.td.pm.bean.LostFoundsExample" >
     delete from lost_founds
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.td.lp.bean.LostFounds" >
+  <insert id="insert" parameterType="com.td.pm.bean.LostFounds" >
     insert into lost_founds (lad_id, lad_date, lad_descripe, 
       loser_name, founder_name, lose_phone, 
       founder_phone)
@@ -109,7 +109,7 @@
       #{loserName,jdbcType=VARCHAR}, #{founderName,jdbcType=VARCHAR}, #{losePhone,jdbcType=VARCHAR}, 
       #{founderPhone,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.td.lp.bean.LostFounds" >
+  <insert id="insertSelective" parameterType="com.td.pm.bean.LostFounds" >
     insert into lost_founds
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="ladId != null" >
@@ -158,7 +158,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.td.lp.bean.LostFoundsExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.td.pm.bean.LostFoundsExample" resultType="java.lang.Integer" >
     select count(*) from lost_founds
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -206,7 +206,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.td.lp.bean.LostFounds" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.td.pm.bean.LostFounds" >
     update lost_founds
     <set >
       <if test="ladDate != null" >
@@ -230,7 +230,7 @@
     </set>
     where lad_id = #{ladId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.td.lp.bean.LostFounds" >
+  <update id="updateByPrimaryKey" parameterType="com.td.pm.bean.LostFounds" >
     update lost_founds
     set lad_date = #{ladDate,jdbcType=TIMESTAMP},
       lad_descripe = #{ladDescripe,jdbcType=VARCHAR},

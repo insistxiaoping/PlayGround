@@ -1,5 +1,8 @@
 package com.td.pm.bean;
 
+import org.springframework.stereotype.Component;
+
+@Component("users")
 public class Users {
     private String userId;
 

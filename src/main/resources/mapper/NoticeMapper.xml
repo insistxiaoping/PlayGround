@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.td.lp.mapper.NoticeMapper" >
-  <resultMap id="BaseResultMap" type="com.td.lp.bean.Notice" >
+<mapper namespace="com.td.pm.mapper.NoticeMapper" >
+  <resultMap id="BaseResultMap" type="com.td.pm.bean.Notice" >
     <id column="notice_id" property="noticeId" jdbcType="INTEGER" />
     <result column="notice_date" property="noticeDate" jdbcType="TIMESTAMP" />
     <result column="notice_title" property="noticeTitle" jdbcType="VARCHAR" />
@@ -68,7 +68,7 @@
   <sql id="Base_Column_List" >
     notice_id, notice_date, notice_title, notice_descripe
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.td.lp.bean.NoticeExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.td.pm.bean.NoticeExample" >
     select
     <if test="distinct" >
       distinct
@@ -92,19 +92,19 @@
     delete from notice
     where notice_id = #{noticeId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.td.lp.bean.NoticeExample" >
+  <delete id="deleteByExample" parameterType="com.td.pm.bean.NoticeExample" >
     delete from notice
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.td.lp.bean.Notice" >
+  <insert id="insert" parameterType="com.td.pm.bean.Notice" >
     insert into notice (notice_id, notice_date, notice_title, 
       notice_descripe)
     values (#{noticeId,jdbcType=INTEGER}, #{noticeDate,jdbcType=TIMESTAMP}, #{noticeTitle,jdbcType=VARCHAR}, 
       #{noticeDescripe,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.td.lp.bean.Notice" >
+  <insert id="insertSelective" parameterType="com.td.pm.bean.Notice" >
     insert into notice
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="noticeId != null" >
@@ -135,7 +135,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.td.lp.bean.NoticeExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.td.pm.bean.NoticeExample" resultType="java.lang.Integer" >
     select count(*) from notice
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -171,7 +171,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.td.lp.bean.Notice" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.td.pm.bean.Notice" >
     update notice
     <set >
       <if test="noticeDate != null" >
@@ -186,7 +186,7 @@
     </set>
     where notice_id = #{noticeId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.td.lp.bean.Notice" >
+  <update id="updateByPrimaryKey" parameterType="com.td.pm.bean.Notice" >
     update notice
     set notice_date = #{noticeDate,jdbcType=TIMESTAMP},
       notice_title = #{noticeTitle,jdbcType=VARCHAR},

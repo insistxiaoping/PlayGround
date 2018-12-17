@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.td.lp.mapper.RepairMapper" >
-  <resultMap id="BaseResultMap" type="com.td.lp.bean.Repair" >
+<mapper namespace="com.td.pm.mapper.RepairMapper" >
+  <resultMap id="BaseResultMap" type="com.td.pm.bean.Repair" >
     <id column="repair_id" property="repairId" jdbcType="INTEGER" />
     <result column="repair_data" property="repairData" jdbcType="VARCHAR" />
   </resultMap>
@@ -66,7 +66,7 @@
   <sql id="Base_Column_List" >
     repair_id, repair_data
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.td.lp.bean.RepairExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.td.pm.bean.RepairExample" >
     select
     <if test="distinct" >
       distinct
@@ -90,17 +90,17 @@
     delete from repair
     where repair_id = #{repairId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.td.lp.bean.RepairExample" >
+  <delete id="deleteByExample" parameterType="com.td.pm.bean.RepairExample" >
     delete from repair
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.td.lp.bean.Repair" >
+  <insert id="insert" parameterType="com.td.pm.bean.Repair" >
     insert into repair (repair_id, repair_data)
     values (#{repairId,jdbcType=INTEGER}, #{repairData,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.td.lp.bean.Repair" >
+  <insert id="insertSelective" parameterType="com.td.pm.bean.Repair" >
     insert into repair
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="repairId != null" >
@@ -119,7 +119,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.td.lp.bean.RepairExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.td.pm.bean.RepairExample" resultType="java.lang.Integer" >
     select count(*) from repair
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -147,7 +147,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.td.lp.bean.Repair" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.td.pm.bean.Repair" >
     update repair
     <set >
       <if test="repairData != null" >
@@ -156,7 +156,7 @@
     </set>
     where repair_id = #{repairId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.td.lp.bean.Repair" >
+  <update id="updateByPrimaryKey" parameterType="com.td.pm.bean.Repair" >
     update repair
     set repair_data = #{repairData,jdbcType=VARCHAR}
     where repair_id = #{repairId,jdbcType=INTEGER}

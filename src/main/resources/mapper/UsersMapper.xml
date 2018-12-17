@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.td.lp.mapper.UsersMapper" >
-  <resultMap id="BaseResultMap" type="com.td.lp.bean.Users" >
+<mapper namespace="com.td.pm.mapper.UsersMapper" >
+  <resultMap id="BaseResultMap" type="com.td.pm.bean.Users" >
     <id column="user_id" property="userId" jdbcType="VARCHAR" />
     <result column="user_phone" property="userPhone" jdbcType="VARCHAR" />
     <result column="user_name" property="userName" jdbcType="VARCHAR" />
@@ -70,7 +70,7 @@
   <sql id="Base_Column_List" >
     user_id, user_phone, user_name, user_sex, user_address, user_password
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.td.lp.bean.UsersExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.td.pm.bean.UsersExample" >
     select
     <if test="distinct" >
       distinct
@@ -94,13 +94,13 @@
     delete from users
     where user_id = #{userId,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.td.lp.bean.UsersExample" >
+  <delete id="deleteByExample" parameterType="com.td.pm.bean.UsersExample" >
     delete from users
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.td.lp.bean.Users" >
+  <insert id="insert" parameterType="com.td.pm.bean.Users" >
     insert into users (user_id, user_phone, user_name, 
       user_sex, user_address, user_password
       )
@@ -108,7 +108,7 @@
       #{userSex,jdbcType=VARCHAR}, #{userAddress,jdbcType=VARCHAR}, #{userPassword,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.td.lp.bean.Users" >
+  <insert id="insertSelective" parameterType="com.td.pm.bean.Users" >
     insert into users
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="userId != null" >
@@ -151,7 +151,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.td.lp.bean.UsersExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.td.pm.bean.UsersExample" resultType="java.lang.Integer" >
     select count(*) from users
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -195,7 +195,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.td.lp.bean.Users" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.td.pm.bean.Users" >
     update users
     <set >
       <if test="userPhone != null" >
@@ -216,7 +216,7 @@
     </set>
     where user_id = #{userId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.td.lp.bean.Users" >
+  <update id="updateByPrimaryKey" parameterType="com.td.pm.bean.Users" >
     update users
     set user_phone = #{userPhone,jdbcType=VARCHAR},
       user_name = #{userName,jdbcType=VARCHAR},
@@ -225,4 +225,8 @@
       user_password = #{userPassword,jdbcType=VARCHAR}
     where user_id = #{userId,jdbcType=VARCHAR}
   </update>
+  <select id="queryAll" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from users
+  </select>
 </mapper>

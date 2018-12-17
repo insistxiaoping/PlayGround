@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.td.lp.mapper.AreasMapper" >
-  <resultMap id="BaseResultMap" type="com.td.lp.bean.Areas" >
+<mapper namespace="com.td.pm.mapper.AreasMapper" >
+  <resultMap id="BaseResultMap" type="com.td.pm.bean.Areas" >
     <id column="area_id" property="areaId" jdbcType="VARCHAR" />
     <result column="area_name" property="areaName" jdbcType="VARCHAR" />
     <result column="area_total" property="areaTotal" jdbcType="INTEGER" />
@@ -70,7 +70,7 @@
   <sql id="Base_Column_List" >
     area_id, area_name, area_total, area_rest, area_const, area_photo
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.td.lp.bean.AreasExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.td.pm.bean.AreasExample" >
     select
     <if test="distinct" >
       distinct
@@ -94,13 +94,13 @@
     delete from areas
     where area_id = #{areaId,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.td.lp.bean.AreasExample" >
+  <delete id="deleteByExample" parameterType="com.td.pm.bean.AreasExample" >
     delete from areas
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.td.lp.bean.Areas" >
+  <insert id="insert" parameterType="com.td.pm.bean.Areas" >
     insert into areas (area_id, area_name, area_total, 
       area_rest, area_const, area_photo
       )
@@ -108,7 +108,7 @@
       #{areaRest,jdbcType=INTEGER}, #{areaConst,jdbcType=INTEGER}, #{areaPhoto,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.td.lp.bean.Areas" >
+  <insert id="insertSelective" parameterType="com.td.pm.bean.Areas" >
     insert into areas
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="areaId != null" >
@@ -151,7 +151,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.td.lp.bean.AreasExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.td.pm.bean.AreasExample" resultType="java.lang.Integer" >
     select count(*) from areas
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -195,7 +195,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.td.lp.bean.Areas" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.td.pm.bean.Areas" >
     update areas
     <set >
       <if test="areaName != null" >
@@ -216,7 +216,7 @@
     </set>
     where area_id = #{areaId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.td.lp.bean.Areas" >
+  <update id="updateByPrimaryKey" parameterType="com.td.pm.bean.Areas" >
     update areas
     set area_name = #{areaName,jdbcType=VARCHAR},
       area_total = #{areaTotal,jdbcType=INTEGER},

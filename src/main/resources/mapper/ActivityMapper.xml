@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.td.lp.mapper.ActivityMapper" >
-  <resultMap id="BaseResultMap" type="com.td.lp.bean.Activity" >
+<mapper namespace="com.td.pm.mapper.ActivityMapper" >
+  <resultMap id="BaseResultMap" type="com.td.pm.bean.Activity" >
     <id column="activity_id" property="activityId" jdbcType="INTEGER" />
     <result column="activity_date" property="activityDate" jdbcType="TIMESTAMP" />
     <result column="activity_type" property="activityType" jdbcType="VARCHAR" />
@@ -69,7 +69,7 @@
   <sql id="Base_Column_List" >
     activity_id, activity_date, activity_type, activity_title, activity_descripe
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.td.lp.bean.ActivityExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.td.pm.bean.ActivityExample" >
     select
     <if test="distinct" >
       distinct
@@ -93,19 +93,19 @@
     delete from activity
     where activity_id = #{activityId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.td.lp.bean.ActivityExample" >
+  <delete id="deleteByExample" parameterType="com.td.pm.bean.ActivityExample" >
     delete from activity
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.td.lp.bean.Activity" >
+  <insert id="insert" parameterType="com.td.pm.bean.Activity" >
     insert into activity (activity_id, activity_date, activity_type, 
       activity_title, activity_descripe)
     values (#{activityId,jdbcType=INTEGER}, #{activityDate,jdbcType=TIMESTAMP}, #{activityType,jdbcType=VARCHAR}, 
       #{activityTitle,jdbcType=VARCHAR}, #{activityDescripe,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.td.lp.bean.Activity" >
+  <insert id="insertSelective" parameterType="com.td.pm.bean.Activity" >
     insert into activity
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="activityId != null" >
@@ -142,7 +142,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.td.lp.bean.ActivityExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.td.pm.bean.ActivityExample" resultType="java.lang.Integer" >
     select count(*) from activity
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -182,7 +182,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.td.lp.bean.Activity" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.td.pm.bean.Activity" >
     update activity
     <set >
       <if test="activityDate != null" >
@@ -200,7 +200,7 @@
     </set>
     where activity_id = #{activityId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.td.lp.bean.Activity" >
+  <update id="updateByPrimaryKey" parameterType="com.td.pm.bean.Activity" >
     update activity
     set activity_date = #{activityDate,jdbcType=TIMESTAMP},
       activity_type = #{activityType,jdbcType=VARCHAR},
