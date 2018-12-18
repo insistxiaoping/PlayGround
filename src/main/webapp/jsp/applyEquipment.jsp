@@ -63,19 +63,26 @@
         </br></br>
      选择器材：
         <div class="main_form">
-            羽毛球 
-            <input  type="text" size="12" maxlength="3" name="ymqiu" value="" placeholder="请输入数量"> 
-            羽毛球拍 
-            <input  type="text" size="12"  name="ympai" value="" maxlength="3" placeholder="请输入数量">
-            乒乓球 
-            <input  type="text" size="12" name="ppqiu" value="" maxlength="3" placeholder="请输入数量">
-            乒乓球拍
-            <input  type="text" size="12"  name="pppai" value="" maxlength="3" placeholder="请输入数量">
-            网球&nbsp;&nbsp;&nbsp;&nbsp;
-            <input  type="text" size="12" name="wqiu" value="" maxlength="3" placeholder="请输入数量">
-            网球拍&nbsp;&nbsp;&nbsp;
-            <input  type="text" size="12" name="wqpai" value="" maxlength="3" placeholder="请输入数量">
-            <button  type="button" onclick="applyEquipment()">提交</button>
+            <%--羽毛球 --%>
+            <%--<input  type="text" size="12" maxlength="3" name="ymqiu" value="" placeholder="请输入数量"> --%>
+            <%--羽毛球拍 --%>
+            <%--<input  type="text" size="12"  name="ympai" value="" maxlength="3" placeholder="请输入数量">--%>
+            <%--乒乓球 --%>
+            <%--<input  type="text" size="12" name="ppqiu" value="" maxlength="3" placeholder="请输入数量">--%>
+            <%--乒乓球拍--%>
+            <%--<input  type="text" size="12"  name="pppai" value="" maxlength="3" placeholder="请输入数量">--%>
+            <%--网球&nbsp;&nbsp;&nbsp;&nbsp;--%>
+            <%--<input  type="text" size="12" name="wqiu" value="" maxlength="3" placeholder="请输入数量">--%>
+            <%--网球拍&nbsp;&nbsp;&nbsp;--%>
+                <div class="selectBox">
+                    <select name="equip_id" id="select">
+                        <c:forEach var="equip" items="${equipList}">
+                            <option value="${equip.equipId}">${equip.equipName}</option>
+                        </c:forEach>
+                    </select>
+                </div>
+                <input  type="text" size="12" name="equipNum" value="0" maxlength="3" placeholder="请输入数量">
+                <button  type="button" onclick="applyEquipment()">提交</button>
         </div>
     </form> 
 </div>
@@ -85,6 +92,8 @@
 </div>
 <script>
     function applyEquipment(){
+        var userId = sessionStorage.getItem("userId");
+        console.log('userId,',userId);
         // 数据库表字段
         // apply_id：自增
         // apply_user_id：
@@ -94,30 +103,44 @@
         // end_time    格式：8:00:00  apply_time 字符串 “-”之后的字符
         // apply_pay： 申请数量*乘10
         // apply_paid：0
-        console.log($("#applyForm").serialize());
-        var ymqiuNum = parseInt($('input[name="ymqiu"]').val())?parseInt($('input[name="ymqiu"]').val()):0;
-        var ympaiNum = parseInt($('input[name="ympai"]').val())?parseInt($('input[name="ympai"]').val()):0;
-        var ppqiuNum = parseInt($('input[name="ppqiu"]').val())?parseInt($('input[name="ppqiu"]').val()):0;
-        var pppaiNum = parseInt($('input[name="pppai"]').val())?parseInt($('input[name="pppai"]').val()):0;
-        var wqiuNum = parseInt($('input[name="wqiu"]').val())?parseInt($('input[name="wqiu"]').val()):0;
-        var wqpaiNum = parseInt($('input[name="wqpai"]').val())?parseInt($('input[name="wqpai"]').val()):0;
-        var sum =  (ymqiuNum+ympaiNum+ppqiuNum+pppaiNum+wqiuNum+wqpaiNum)*10; 
-        var data = "apply_pay="+sum+"&"+"apply_pay=0"
+        var equipNum = parseInt($('input[name="equipNum"]').val())?parseInt($('input[name="equipNum"]').val()):0;
+        var sum =  equipNum*10;
+        var times = $('input[name="apply_time"]').val().split('-');
+        var data = "&"+"apply_user_id="+userId+"&"+"apply_paid="+sum+"&"+"apply_pay=0"+"&"+"start_time="+times[0]+"&"+"end_time="+times[1];
         console.log(($("#applyForm").serialize()+data));
-        $.ajax({
-            type : get,
-            // url : ,
-            contentType : "application/json; charset=utf-8",
-            dataType : "json",
-            data : data,
-            success : function(data) {
-                alert("申请成功");
-                window.location.href="${pageContext.request.contextPath}/links/applyEquipment";
-            },
-            error : function(data) {
-                alert("申请失败");
+        var applyObj = this.stringToJson($("#applyForm").serialize()+data)
+        if(applyObj){
+            console.log('applyObj.',applyObj)
+            $.ajax({
+                type : 'get',
+                // url : ,
+                contentType : "application/json; charset=utf-8",
+                dataType : "json",
+                data : JSON.stringify(applyObj),
+                success : function(data) {
+                    alert("申请成功");
+                    window.location.href="${pageContext.request.contextPath}/links/applyEquipment";
+                },
+                error : function(data) {
+                    alert("申请失败");
+                }
+            });
+        }
+    }
+    // 把 form获取的参数转为 json格式
+    function stringToJson(str){
+        console.log('str',str);
+        var dataList = str.split("&");
+        var userObj ={};
+        for(var i in dataList){
+            console.log(dataList[i]);
+            if(!dataList[i].split("=")[1]){
+                alert('请填入完整的信息');
+                return false;
             }
-        });
+            userObj[dataList[i].split("=")[0]]= dataList[i].split("=")[1];
+        }
+        return userObj;
     }
 </script>
 </body>

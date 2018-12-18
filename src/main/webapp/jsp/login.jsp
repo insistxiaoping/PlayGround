@@ -72,6 +72,7 @@ background-attachment:fixed;">
     }
     // 用户登录 
     function userLoad(){
+        sessionStorage.removeItem("userId");
         // console.log($("#userForm").serialize());
         var userId = $("#userId").val();
         var userPassword = $("#userPassword").val();
@@ -84,6 +85,8 @@ background-attachment:fixed;">
              contentType : "application/json; charset=utf-8",
              dataType : "json",
              success : function(data) {
+                 // 缓存用户 id
+                 sessionStorage.setItem("userId", userId);
                  if (data.result ="success"){
                      window.location.href="${pageContext.request.contextPath}/links/home";
                  }else{

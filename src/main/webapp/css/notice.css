@@ -268,3 +268,33 @@ input[type=checkbox]:checked::after{
     position: absolute;
     top: 80%;
 }
+.main_form .selectBox{
+    background: url('https://raw.githubusercontent.com/ourjs/static/gh-pages/2015/arrow.png') right center no-repeat;
+    /* the width and the height of your image */
+    width: 150px;
+    height: 30px;
+    overflow: hidden;
+    border: solid 1px black;
+    position: relative;
+    left: 4%;
+    top: 9%;
+}
+.selectBox select{
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    background:transparent;
+    border:none;
+    padding-left:10px;
+    width: 120px;
+    height:100%;
+}
+.main_form input{
+    width: 150px;
+    height: 30px;
+    overflow: hidden;
+    border: solid 1px black;
+    position: relative;
+    left: 50%;
+    top: -33px;
+}
