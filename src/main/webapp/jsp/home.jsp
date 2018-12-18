@@ -53,6 +53,7 @@
                style="font-size:25px;color:rgba(50,50,50,100);">馆内通知</a></li>
         <li><a href="${pageContext.request.contextPath}/links/notice" style="font-size:25px;color:rgba(50,50,50,100);">馆内须知</a>
         </li>
+        <li><a href="${pageContext.request.contextPath}/links/adminEquipment" style="background-color: #E6E6FA;"> 器材管理</a></li>
     </ul>
 </div>
 <div class="main">

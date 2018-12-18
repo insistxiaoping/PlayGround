@@ -21,7 +21,6 @@ public class UsersServiceImpl implements UsersService {
         else
             return true;
     }
-
     @Override
     public List<Users> queryAll() {
         return mapper.queryAll();

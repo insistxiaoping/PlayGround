@@ -57,4 +57,37 @@ public class LinksController {
     public String loginLink(){
         return "login";
     }
+    @RequestMapping("/register")
+    public String registerLink(){
+        return "register";
+    }
+    // 管理员界面跳转
+    @RequestMapping("/adminEquipment")
+    public String adminEquipmentLink(){
+        return "/Admin/adminEquipment";
+    }
+    @RequestMapping("/adminArea")
+    public String adminAreaLink(){
+        return "/Admin/adminArea";
+    }
+    @RequestMapping("/adminNotice")
+    public String adminNoticeLink(){
+        return "/Admin/adminNotice";
+    }
+    @RequestMapping("/adminActivity")
+    public String adminActivityLink(){
+        return "/Admin/adminActivity";
+    }
+    @RequestMapping("/adminUser")
+    public String adminUserLink(){
+        return "/Admin/adminUser";
+    }
+    @RequestMapping("/adminFinance")
+    public String adminFinanceLink(){
+        return "/Admin/adminFinance";
+    }
+    @RequestMapping("/adminPersonal")
+    public String adminPersonalLink(){
+        return "/Admin/adminPersonal";
+    }
 }

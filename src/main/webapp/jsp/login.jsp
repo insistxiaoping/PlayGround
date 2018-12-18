@@ -46,7 +46,7 @@ background-attachment:fixed;">
             <form id="managerForm" method="post">
                 <div id="manager" class="funct hidden">
                         <p class="name"> 管理员名</p>
-                        <input class="ntext" type="text" name="managerName" placeholder="请输入管理员登录名" /><br/> <br/>
+                        <input class="ntext" type="text" name="managerId" placeholder="请输入管理员登录名" /><br/> <br/>
                         <p class="passw" >密码</p>
                         <input class="ptext" type="password" name="managerPassword" placeholder="请输入密码" autocomplete="of"/><br/><br/>
                         <button class="loader" type="button" onclick="managerLoad()" name="manager_Load"  value="manager_Load">登录</button><br/><br/>
@@ -76,19 +76,42 @@ background-attachment:fixed;">
         var userId = $("#userId").val();
         var userPassword = $("#userPassword").val();
         // 参数name： userId，userPassword
-        // 数据库的用户信息：user 1232
+        // 数据库的用户信息：123 123
         // window.location.href="file:///E:/Study/%E5%A4%A7%E5%9B%9B/%E4%B8%93%E4%B8%9A%E7%BB%BC%E5%90%88%E8%AE%BE%E8%AE%A1/%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%95%8C%E9%9D%A2/%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%95%8C%E9%9D%A2/%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%95%8C%E9%9D%A2/home.html";
          $.ajax({
              type : "post",
              url :"${pageContext.request.contextPath}/users/"+userId+"/"+userPassword+"/login",
              contentType : "application/json; charset=utf-8",
              dataType : "json",
-            success : function(data) {
+             success : function(data) {
                  if (data.result ="success"){
                      window.location.href="${pageContext.request.contextPath}/links/home";
                  }else{
                      alert("检查输入信息！")
                  }
+            },
+            error : function(data) {
+                console.log("登陆失败");
+            }
+        });
+    }
+    // 管理员登录
+    function managerLoad() {
+        var managerId = $("#managerId").val();
+        var managerPassword = $("#managerPassword").val();
+        // 参数name： managerId，managerPassword
+        // 数据库的管理员信息：admin 111111
+        $.ajax({
+            type : "post",
+            url :"${pageContext.request.contextPath}/managers/"+managerId+"/"+managerPassword+"/login",
+            contentType : "application/json; charset=utf-8",
+            dataType : "json",
+            success : function(data) {
+                if (data.result ="success"){
+                    window.location.href="${pageContext.request.contextPath}/links/adminEquipment";
+                }else{
+                    alert("检查输入信息！")
+                }
             },
             error : function(data) {
                 console.log("登陆失败");
