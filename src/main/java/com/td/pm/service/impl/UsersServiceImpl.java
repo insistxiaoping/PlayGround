@@ -1,6 +1,7 @@
 package com.td.pm.service.impl;
 
 import com.td.pm.bean.Users;
+import com.td.pm.mapper.EquipmentsMapper;
 import com.td.pm.mapper.UsersMapper;
 import com.td.pm.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,18 +12,30 @@ import java.util.List;
 @Service
 public class UsersServiceImpl implements UsersService {
     @Autowired
-    private UsersMapper mapper;
+    private UsersMapper usersMapper;
     @Override
-    public Boolean login(String userId, String userPassword) {
-        Users users = mapper.selectByPrimaryKey(userId);
-        //≈–∂œ’À∫≈√‹¬Î «∑Ò’˝»∑
-        if (users == null || !userPassword.equals(users.getUserPassword()))
-            return false;
-        else
+    public Boolean login(String userId, String userPassword,String isAdmin) {
+        Users users =null;
+        if (isAdmin ==null){
+            users = usersMapper.selectByPrimaryKey(userId);
+            //≈–∂œ’À∫≈√‹¬Î «∑Ò’˝»∑
+            if (users == null || !userPassword.equals(users.getUserPassword()))
+                return false;
+        }else{
+            if (usersMapper.selectAdminByPrimaryKey(userId,userPassword)<0)
+                return false;
+        }
+        return true;
+    }
+    @Override
+    public Boolean saveUser(Users users) {
+        int count = usersMapper.insert(users);
+        if (count>0)
             return true;
+        return false;
     }
     @Override
     public List<Users> queryAll() {
-        return mapper.queryAll();
+        return usersMapper.queryAll();
     }
 }

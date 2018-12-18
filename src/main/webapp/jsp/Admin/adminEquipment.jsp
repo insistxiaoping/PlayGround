@@ -66,20 +66,20 @@
                     </tr>
                 </thead>
                 <tbody>
-                <%-- equipList 是一个数组对象，这里我不知道是不是这样遍历--%>
-                    <c:if test="${!empty equipList}">
-                        <c:forEach var="equip" items="${equipList}">
-                            <tr>
-                                <td><input  name="deleteId" value="${equip.equipId}" type="checkbox" class="checkItem" /></td>
-                                <td>${equip.equipName}</td>
-                                <td>${equip.equipTotal}</td>
-                                <td>${equip.equipRest}</td>
-                                <td>${equip.equipConst}</td>
-                                <td>$<input class="btn btn-default editEquip" type="button" value="编辑" data-toggle="modal" onclick="equipMsg(${equip.equipId})">  </td>
-                                <%--<td>$<input class="btn btn-default editEquip" type="button" value="编辑" data-toggle="modal" data-target="#editModal" onclick="equipMsg(1)"></td>--%>
-                            </tr>
-                        </c:forEach>
-                    </c:if>
+                <%--&lt;%&ndash; equipList 是一个数组对象，这里我不知道是不是这样遍历&ndash;%&gt;--%>
+                    <%--<c:if test="${!empty equipList}">--%>
+                        <%--<c:forEach var="equip" items="${equipList}">--%>
+                            <%--<tr>--%>
+                                <%--<td><input  name="deleteId" value="${equip.equipId}" type="checkbox" class="checkItem" /></td>--%>
+                                <%--<td>${equip.equipName}</td>--%>
+                                <%--<td>${equip.equipTotal}</td>--%>
+                                <%--<td>${equip.equipRest}</td>--%>
+                                <%--<td>${equip.equipConst}</td>--%>
+                                <%--<td>$<input class="btn btn-default editEquip" type="button" value="编辑" data-toggle="modal" onclick="equipMsg(${equip.equipId})">  </td>--%>
+                                <%--&lt;%&ndash;<td>$<input class="btn btn-default editEquip" type="button" value="编辑" data-toggle="modal" data-target="#editModal" onclick="equipMsg(1)"></td>&ndash;%&gt;--%>
+                            <%--</tr>--%>
+                        <%--</c:forEach>--%>
+                    <%--</c:if>--%>
                 </tbody>
             </table>
         </div>
@@ -94,7 +94,7 @@
                     </h4>
                 </div>
                 <div class="modal-body">
-                    <form class="form-horizontal" id="editForm" role="form">
+                    <form class="form-horizontal" id="editForm" role="form" method="post">
                         <div class="form-group" style="display: none">
                             <label class="col-sm-3 control-label" for="equipIdEdit">器材ID</label>
                             <div class="col-sm-6">
@@ -153,7 +153,7 @@
                     </h4>
                 </div>
                 <div class="modal-body">
-                    <form class="form-horizontal" id="addForm" role="form">
+                    <form class="form-horizontal" id="addForm" role="form" method="post">
                         <div class="form-group">
                             <label class="col-sm-3 control-label" for="equipId">器材ID</label>
                             <div class="col-sm-6">
@@ -208,15 +208,15 @@
         // 页面加载，获取器材数据
         window.onload=function(){
             $.ajax({
-                type: 'get',
-                <%--url :"${pageContext.request.contextPath}/admin/equipments,--%>
+                type: "post",
+                url :"${pageContext.request.contextPath}/admin/equipments",
                 contentType : "application/json; charset=utf-8",
                 dataType : "json",
                 success : function(data) {
                     console.log('器材数据返回成功');
                     console.log(data);
                 },
-                error : function(data) {
+                error : function() {
                     console.log("器材数据返回失败");
                 }
             })
@@ -224,129 +224,123 @@
         // 把 form 表单获取的参数转为 json格式
         function stringToJson(str){
             console.log('str',str);
-            var dataList = str.split("&");
             var obj ={};
-            for(var i in dataList){
-                console.log(dataList[i]);
-                if(!dataList[i].split("=")[1]){
-                    alert('请填入完整的信息');
-                    return false;
-                }
-                obj[dataList[i].split("=")[0]]= dataList[i].split("=")[1];
-            }
+            //将表单数据转换为json
+            $.each(str,function(i,v){
+              obj[v.name] = v.value;
+            });
+            obj = JSON.stringify(obj);
             return obj;
         }
         // 提交新增器材
         function addEquip() {
-            console.log('addEquip')
-            console.log($("#addForm").serialize());
-            var addEquipObj = this.stringToJson($("#addForm").serialize());
-            if(addEquipObj){
-                console.log('addEquipObj',JSON.stringify(addEquipObj))
-                $.ajax({
-                    type: 'get',
-                    <%--url :"${pageContext.request.contextPath}/admin,--%>
-                    contentType : "application/json; charset=utf-8",
-                    dataType : "json",
-                    data : JSON.stringify(addEquipObj),
-                    success : function(data) {
-                        console.log("器材添加成功");
-                        console.log(data)
-                        if (data.result ="success"){
-                            window.location.href="${pageContext.request.contextPath}/links/adminEquipment";
-                        }else{
-                            alert("检查输入信息！")
-                        }
-                    },
-                    error : function(data) {
-                        console.log("器材添加失败");
-                    }
-                })
-            }
+        console.log('addEquip')
+        console.log($("#addForm").serializeArray());
+        var addEquipObj = this.stringToJson($("#addForm").serializeArray());
+        if(addEquipObj){
+        console.log('addEquipObj',addEquipObj)
+        $.ajax({
+        type: "post",
+        url :"${pageContext.request.contextPath}/admin/addEquip",
+        contentType : "application/json; charset=utf-8",
+        dataType : "json",
+        data : addEquipObj,
+        success : function(data) {
+        console.log("器材添加成功");
+        console.log(data)
+        if (data.result ="success"){
+        window.location.href="${pageContext.request.contextPath}/links/adminEquipment";
+        }else{
+        alert("检查输入信息！")
+        }
+        },
+        error : function(data) {
+        console.log("器材添加失败");
+        }
+        })
+        }
         }
         // 根据器材ID 删除器材数据
         function deleteEquip(){
-            // 获取要删除的 idList  数组
-            var idList = [];
-            $.each($('input:checkbox'),function(){
-                if(this.checked) {
-                    idList.push($(this).val());
-                    console.log(idList);
-                }
-            });
-            console.log(idList);
-            if(idList.length>0){
-                console.log('发送请求',idList)
-                $.ajax({
-                    type: 'get',
-                    <%--url :"${pageContext.request.contextPath}/admin,--%>
-                    contentType : "application/json; charset=utf-8",
-                    dataType : "json",
-                    data :{equipIds: idList},
-                    success : function(data) {
-                        if (data.result ="success"){
-                            window.location.href="${pageContext.request.contextPath}/links/adminEquipment";
-                        }
-                    },
-                    error : function(data) {
-                        console.log("器材删除失败");
-                    }
-                })
-            }
+        // 获取要删除的 idList  数组
+        var idList = [];
+        $.each($('input:checkbox'),function(){
+        if(this.checked) {
+        idList.push($(this).val());
+        console.log(idList);
+        }
+        });
+        console.log(idList);
+        if(idList.length>0){
+        console.log('发送请求',idList)
+        $.ajax({
+        type: "post",
+        url :"${pageContext.request.contextPath}/admin/deleteEquip",
+        contentType : "application/json; charset=utf-8",
+        dataType : "json",
+        data :{equipIds: idList},
+        success : function(data) {
+        if (data.result ="success"){
+        window.location.href="${pageContext.request.contextPath}/links/adminEquipment";
+        }
+        },
+        error : function(data) {
+        console.log("器材删除失败");
+        }
+        })
+        }
         }
         // 提交修改器材的数据
         function editEquip(){
-            console.log('editEquip')
-            console.log($("#editForm").serialize());
-            var editEquipObj = this.stringToJson($("#editForm").serialize());
-            if(editEquipObj){
-                console.log('editEquipObj',JSON.stringify(editEquipObj))
-                $.ajax({
-                    type: 'get',
-                    <%--url :"${pageContext.request.contextPath}/admin,--%>
-                    contentType : "application/json; charset=utf-8",
-                    dataType : "json",
-                    data : JSON.stringify(editEquipObj),
-                    success : function(data) {
-                        console.log("器材修改成功");
-                        console.log(data)
-                        if (data.result ="success"){
-                            window.location.href="${pageContext.request.contextPath}/links/adminEquipment";
-                        }else{
-                            alert("检查输入信息！")
-                        }
-                    },
-                    error : function(data) {
-                        console.log("器材修改失败");
-                    }
-                })
-            }
+        console.log('editEquip')
+        console.log($("#editForm").serializeArray());
+        var editEquipObj = this.stringToJson($("#editForm").serializeArray());
+        if(editEquipObj){
+        console.log('editEquipObj',editEquipObj)
+        $.ajax({
+        type: "post",
+        url :"${pageContext.request.contextPath}/admin/editEquip",
+        contentType : "application/json; charset=utf-8",
+        dataType : "json",
+        data : editEquipObj,
+        success : function(data) {
+        console.log("器材修改成功");
+        console.log(data)
+        if (data.result ="success"){
+        window.location.href="${pageContext.request.contextPath}/links/adminEquipment";
+        }else{
+        alert("检查输入信息！")
+        }
+        },
+        error : function(data) {
+        console.log("器材修改失败");
+        }
+        })
+        }
         }
         // 根据器材 ID，获取器材数据用于编辑器材
         function equipMsg(id) {
-            console.log('id',id);
-            $.ajax({
-                type: 'get',
-                url:'http://localhost:8086/equipMsg',
-                <%--url :"${pageContext.request.contextPath}/admin,--%>
-                contentType : "application/json; charset=utf-8",
-                dataType : "json",
-                // data :{equipId: id},
-                success : function(data) {
-                    console.log("成功返回器材数据");
-                    console.log(data)
-                    // 返回数据以后，才让模态框弹出，此时模态框才有编辑器材的数据
-                    if (data.result ="success"){
-                        $("#editModal").modal("show")
-                    }else{
-                        alert("检查输入信息！")
-                    }
-                },
-                error : function(data) {
-                    console.log("器材查询失败");
-                }
-            })
+        console.log('id',id);
+        $.ajax({
+        type: "post",
+        url :"${pageContext.request.contextPath}/admin/"+id+"getEquip",
+        contentType : "application/json; charset=utf-8",
+        dataType : "json",
+        success : function(data) {
+        console.log("成功返回器材数据");
+        console.log(data)
+        // 返回数据以后，才让模态框弹出，此时模态框才有编辑器材的数据
+        if (data.result ="success"){
+        $("#editModal").modal("show")
+        }else{
+        alert("检查输入信息！")
         }
-    </script>
+        },
+        error : function(data) {
+        console.log("器材查询失败");
+        }
+        })
+}
+</script>
 </body>
 

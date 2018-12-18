@@ -12,6 +12,8 @@ public interface EquipmentsMapper {
 
     int deleteByPrimaryKey(String equipId);
 
+    int deleteByPrimaryKeys(List<String> list);
+
     int insert(Equipments record);
 
     int insertSelective(Equipments record);
@@ -20,6 +22,7 @@ public interface EquipmentsMapper {
 
     Equipments selectByPrimaryKey(String equipId);
 
+
     int updateByExampleSelective(@Param("record") Equipments record, @Param("example") EquipmentsExample example);
 
     int updateByExample(@Param("record") Equipments record, @Param("example") EquipmentsExample example);
@@ -27,4 +30,5 @@ public interface EquipmentsMapper {
     int updateByPrimaryKeySelective(Equipments record);
 
     int updateByPrimaryKey(Equipments record);
+    List<Equipments> queryAll();
 }

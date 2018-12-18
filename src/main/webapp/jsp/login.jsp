@@ -46,9 +46,9 @@ background-attachment:fixed;">
             <form id="managerForm" method="post">
                 <div id="manager" class="funct hidden">
                         <p class="name"> 管理员名</p>
-                        <input class="ntext" type="text" name="managerId" placeholder="请输入管理员登录名" /><br/> <br/>
+                        <input class="ntext" type="text" id="managerId" placeholder="请输入管理员登录名" /><br/> <br/>
                         <p class="passw" >密码</p>
-                        <input class="ptext" type="password" name="managerPassword" placeholder="请输入密码" autocomplete="of"/><br/><br/>
+                        <input class="ptext" type="password" id="managerPassword" placeholder="请输入密码" autocomplete="of"/><br/><br/>
                         <button class="loader" type="button" onclick="managerLoad()" name="manager_Load"  value="manager_Load">登录</button><br/><br/>
                 </div>
             </form>  
@@ -87,13 +87,13 @@ background-attachment:fixed;">
              success : function(data) {
                  // 缓存用户 id
                  sessionStorage.setItem("userId", userId);
-                 if (data.result ="success"){
+                 if (data =="success"){
                      window.location.href="${pageContext.request.contextPath}/links/home";
                  }else{
                      alert("检查输入信息！")
                  }
             },
-            error : function(data) {
+            error : function() {
                 console.log("登陆失败");
             }
         });
@@ -106,17 +106,17 @@ background-attachment:fixed;">
         // 数据库的管理员信息：admin 111111
         $.ajax({
             type : "post",
-            url :"${pageContext.request.contextPath}/managers/"+managerId+"/"+managerPassword+"/login",
+            url :"${pageContext.request.contextPath}/users/"+managerId+"/"+managerPassword+"/login?isAdmin=yes",
             contentType : "application/json; charset=utf-8",
             dataType : "json",
             success : function(data) {
-                if (data.result ="success"){
+                if (data =="success"){
                     window.location.href="${pageContext.request.contextPath}/links/adminEquipment";
                 }else{
                     alert("检查输入信息！")
                 }
             },
-            error : function(data) {
+            error : function() {
                 console.log("登陆失败");
             }
         });

@@ -94,6 +94,14 @@
     delete from equipments
     where equip_id = #{equipId,jdbcType=VARCHAR}
   </delete>
+  <delete id="deleteByPrimaryKeys" parameterType="java.util.List" >
+    delete from equipments
+    where equip_id in
+    <foreach collection="list" item="id" separator="," close=")" open="(">
+      #{id,jdbcType=VARCHAR}
+    </foreach>
+  </delete>
+
   <delete id="deleteByExample" parameterType="com.td.pm.bean.EquipmentsExample" >
     delete from equipments
     <if test="_parameter != null" >
@@ -225,4 +233,8 @@
       equip_photo = #{equipPhoto,jdbcType=VARCHAR}
     where equip_id = #{equipId,jdbcType=VARCHAR}
   </update>
+  <select id="queryAll" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from equipments
+  </select>
 </mapper>

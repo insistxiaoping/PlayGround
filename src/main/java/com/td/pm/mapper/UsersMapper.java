@@ -19,6 +19,7 @@ public interface UsersMapper {
     List<Users> selectByExample(UsersExample example);
 
     Users selectByPrimaryKey(String userId);
+    int selectAdminByPrimaryKey(@Param("userId") String userId,@Param("userPassword")String userPassword);
 
     int updateByExampleSelective(@Param("record") Users record, @Param("example") UsersExample example);
 

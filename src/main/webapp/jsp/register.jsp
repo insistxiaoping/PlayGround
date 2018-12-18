@@ -23,101 +23,65 @@
 <body background="${pageContext.request.contextPath}/image/体育馆背景.jpg" style=" background-repeat:no-repeat ;
 background-size:100% 100%;
 background-attachment:fixed;">
-    <div class="register_box">
-        <div class="box_row">
-            <div class="boxtitle"> 欢迎注册体育馆预约系统</div>
-            <form id="registForm">
-                <div class="registerbox"> 
-                    <div>姓名:<input class="ntext" type="user" name="user_name" placeholder="请输入姓名"></div></br>
-                    <div>手机号码:<input class="ntext" type="user" name="user_phone" placeholder="请输入手机号码" onchange="checkID()"></div></br>
-                    <div>密码：<input class="ptext" type="password" name="user_password" placeholder="请输入密码"></div></br>
-                    <div >性别： 
-                        <div class="genderbox">
-                            <input name="user_sex" type="radio" value="男" onchange="changeSex();"/>男&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <input  name="user_sex" type="radio" value="女" onchange="changeSex();"/>女</div>
-                        </div>
-                    <div>住址：<input class="ptext
-                    " type="user" name="user_address" placeholder="请输入住址"></div>
-                    <button type="button" class="loader" onclick="userRegister()">注册</button>
+<div class="register_box">
+    <div class="box_row">
+        <div class="boxtitle"> 欢迎注册体育馆预约系统</div>
+        <form id="registForm">
+            <div class="registerbox">
+                <div>姓名:<input class="ntext" type="user" name="userName" placeholder="请输入注册手机号"></div></br>
+                <div>手机号码:<input class="ntext" type="user" name="userPhone"placeholder="请输入注册手机号"></div></br>
+                <div>密码：<input class="ptext" type="password" name="userPassword"placeholder="请输入密码"></div></br>
+                <div >性别：
+                    <div class="genderbox">
+                        <input name="userSex" type="radio" value="男" onchange="changeSex();"/>男&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input  name="userSex" type="radio" value="女" onchange="changeSex();"/>女</div>
                 </div>
-            </form>
-        </div>   
+                <div>住址：<input class="ptext
+                    " type="user" name="userAddress" placeholder="请输入住址"></div>
+                <button type="button" class="loader" onclick="userRegis()">注册</button>
+            </div>
+        </form>
     </div>
-    <script>
-        // 判断该手机号码是否注册
-        function checkID() {
-            var id= $("*[name='user_phone']").val();
-            $.ajax({
-                type : "post",
-                <%--url :"${pageContext.request.contextPath}/users/"+id+"/register",--%>
-                contentType : "application/json; charset=utf-8",
-                dataType : "json",
-                data:{id:id},
-                success : function(data) {
-                    if (data.result !="success"){
-                        alert("该手机号码已注册！")
-                        $("*[name='user_phone']").val("")
-                    }
-                },
-                error : function(data) {
-                    alert("注册失败");
+</div>
+<script>
+    function userRegis(){
+        console.log($("#registForm").serialize());
+        var array = $("#registForm").serializeArray();
+        var obj = {};
+        //将表单数据转换为json
+        $.each(array,function(i,v){
+            obj[v.name] = v.value;
+        });
+        console.log(obj);
+        obj = JSON.stringify(obj);
+        $.ajax({
+            type : "post",
+            url : "${pageContext.request.contextPath}/users/regist",
+            contentType : "application/json; charset=utf-8",
+            dataType : "json",
+            data : obj,
+            success : function(data) {
+                if (data=="success"){
+                    window.location.href="${pageContext.request.contextPath}/links/login";
                 }
-            });
-        }
-        // 把 form获取的参数转为 json格式
-        function stringToJson(str){
-            console.log('str',str);
-            var dataList = str.split("&");
-            var userObj ={};
-            for(var i in dataList){
-                console.log(dataList[i]);
-                if(!dataList[i].split("=")[1]){
-                    alert('请填入完整的信息');
-                    return false;
-                }
-                userObj[dataList[i].split("=")[0]]= dataList[i].split("=")[1];
+                else alert("请检查信息是否填写正确！");
+            },
+            error : function(data) {
+                alert("注册失败");
             }
-            return userObj;
-        }
-        // 用户注册
-        function userRegister(){
-            console.log($("#registForm").serialize());
-            var userObj = this.stringToJson($("#registForm").serialize())
-          // 数据表字段
-          // user_id ：手机号码，也是以后的登录名 name="user_phone"
-          // user_phone: 手机号码  name="user_phone"
-          // user_name: 姓名 name=user_name
-          // user_sex：性别 name="user_sex" 
-          // user_address：地址 name="user_address"
-          // user_password：密码 name="user_password"
-            if(userObj){
-                $.ajax({
-                    type : "post",
-                    // url :
-                    contentType : "application/json; charset=utf-8",
-                    dataType : "json",
-                    data : JSON.stringify(userObj),
-                    success : function(data) {
-                        alert('登录成功');
-                        window.location.href="${pageContext.request.contextPath}/links/login";
-                    },
-                    error : function(data) {
-                        alert("注册失败");
-                    }
-                });
+        });
+    };
+    function changeSex(){
+        var radio =document.getElementsByName("user_sex");
+        for(var i =0;i < radio.length;i++){
+            radio[i].removeAttribute('checked');
+            if(radio[i].checked){
+                radio[i].setAttribute('checked',"checked");
+                var sex = radio[i].value;
+                // alert(varradioValue);
             }
-        };
-        // 选择性别
-        function changeSex(){
-          var radio =document.getElementsByName("user_sex");
-          for(var i =0;i < radio.length;i++){
-              radio[i].removeAttribute('checked');
-              if(radio[i].checked){
-                  radio[i].setAttribute('checked',"checked");
-                  var sex = radio[i].value;
-              }
-          }
         }
-    </script>
+    }
+</script>
 </body>
 </html>
