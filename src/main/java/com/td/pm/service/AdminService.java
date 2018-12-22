@@ -7,7 +7,8 @@ import java.util.List;
 public interface AdminService {
     List<Equipments> queryAll();
     Boolean save(Equipments equipments);
-    Boolean deleteByIds(List<String> list);
+//    Boolean deleteByIds(List<String> list);
+    Boolean deleteByIds(String[] array);
     Boolean updateEquipments(Equipments equipments);
     Equipments getEquipById(String id);
 }

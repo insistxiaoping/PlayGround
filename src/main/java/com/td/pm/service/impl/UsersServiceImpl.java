@@ -1,8 +1,10 @@
 package com.td.pm.service.impl;
 
+import com.td.pm.bean.ApplyEquip;
 import com.td.pm.bean.Users;
 import com.td.pm.mapper.EquipmentsMapper;
 import com.td.pm.mapper.UsersMapper;
+import com.td.pm.mapper.ApplyEquipMapper;
 import com.td.pm.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,8 @@ import java.util.List;
 public class UsersServiceImpl implements UsersService {
     @Autowired
     private UsersMapper usersMapper;
+    @Autowired
+    private ApplyEquipMapper applyEquipMapper;
     @Override
     public Boolean login(String userId, String userPassword,String isAdmin) {
         Users users =null;
@@ -38,4 +42,12 @@ public class UsersServiceImpl implements UsersService {
     public List<Users> queryAll() {
         return usersMapper.queryAll();
     }
+    @Override
+    public   Boolean saveApplyEquip(ApplyEquip apply){
+        int count = applyEquipMapper.insert(apply);
+        if (count>0)
+            return true;
+        return false;
+    }
+
 }

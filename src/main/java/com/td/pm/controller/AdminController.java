@@ -50,8 +50,9 @@ public class AdminController {
     }
     @RequestMapping(value = "/deleteEquip",method = RequestMethod.POST)
     @ResponseBody
-    public String deleteEquipments(@RequestBody(required = false) List<String> list){
-        Boolean result = service.deleteByIds(list);
+//    public String deleteEquipments(@RequestBody(required = false) List<String> list){
+    public String deleteEquipments(@RequestBody(required = false) String[] array){
+        Boolean result = service.deleteByIds(array);
         String data = "";
         //ÅÐ¶ÏÊÇ·ñÎª¿Õ
         if (result == true)

@@ -94,13 +94,20 @@
     delete from equipments
     where equip_id = #{equipId,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByPrimaryKeys" parameterType="java.util.List" >
+  <delete id="deleteByPrimaryKeys">
     delete from equipments
     where equip_id in
-    <foreach collection="list" item="id" separator="," close=")" open="(">
+    <foreach collection="array" item="id" separator="," close=")" open="(">
       #{id,jdbcType=VARCHAR}
     </foreach>
   </delete>
+  <!--<delete id="deleteByPrimaryKeys" parameterType="java.util.List" >-->
+    <!--delete from equipments-->
+    <!--where equip_id in-->
+    <!--<foreach collection="list" item="id" separator="," close=")" open="(">-->
+      <!--#{id,jdbcType=VARCHAR}-->
+    <!--</foreach>-->
+  <!--</delete>-->
 
   <delete id="deleteByExample" parameterType="com.td.pm.bean.EquipmentsExample" >
     delete from equipments

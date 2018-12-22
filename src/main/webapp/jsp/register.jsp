@@ -45,7 +45,7 @@ background-attachment:fixed;">
 </div>
 <script>
     function userRegis(){
-        console.log($("#registForm").serialize());
+
         var array = $("#registForm").serializeArray();
         var obj = {};
         //将表单数据转换为json
@@ -61,10 +61,10 @@ background-attachment:fixed;">
             dataType : "json",
             data : obj,
             success : function(data) {
-                if (data=="success"){
+                 if (data=="success"){
+                    alert("注册成功！");
                     window.location.href="${pageContext.request.contextPath}/links/login";
-                }
-                else alert("请检查信息是否填写正确！");
+                }else alert("请检查信息是否填写正确！");
             },
             error : function(data) {
                 alert("注册失败");

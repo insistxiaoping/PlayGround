@@ -25,8 +25,8 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public Boolean deleteByIds(List<String> list) {
-        if (mapper.deleteByPrimaryKeys(list)>0)
+    public Boolean deleteByIds(String[] array) {
+        if (mapper.deleteByPrimaryKeys(array)>0)
             return true;
         return false;
     }

@@ -12,7 +12,7 @@ public interface EquipmentsMapper {
 
     int deleteByPrimaryKey(String equipId);
 
-    int deleteByPrimaryKeys(List<String> list);
+    int deleteByPrimaryKeys(String[] array);
 
     int insert(Equipments record);
 

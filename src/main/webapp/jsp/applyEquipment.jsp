@@ -18,10 +18,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>申请器材</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/notice.css">
-    <%--<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">  --%>
-    <script src="${pageContext.request.contextPath}/js/jquery-3.2.1.js"></script>   
-    <%--<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script> --%>
-
+    <script src="${pageContext.request.contextPath}/js/jquery-3.2.1.js"></script>
 </head>
 <body>
 <div class="top">
@@ -47,7 +44,7 @@
 </div>
 <div class="main">
     <form id="applyForm" style="font-size: 25px;color:rgba(50,50,50,100);">
-        选择日期:&nbsp;&nbsp;&nbsp;&nbsp;<input type="date" name="apply_date" value=""></br></br>
+        选择日期:&nbsp;&nbsp;&nbsp;&nbsp;<input type="date" name="applyDate" value=""></br></br>
         选择时段
         <%--<label><input name="apply_time" type="checkbox" value="8:00-10:00 " /> 8:00-10:00 </label>--%>
         <%--<label><input name="apply_time" type="checkbox" value="10:00-12:00" /> 10:00-12:00 </label>--%>
@@ -63,22 +60,9 @@
         </br></br>
      选择器材：
         <div class="main_form">
-            <%--羽毛球 --%>
-            <%--<input  type="text" size="12" maxlength="3" name="ymqiu" value="" placeholder="请输入数量"> --%>
-            <%--羽毛球拍 --%>
-            <%--<input  type="text" size="12"  name="ympai" value="" maxlength="3" placeholder="请输入数量">--%>
-            <%--乒乓球 --%>
-            <%--<input  type="text" size="12" name="ppqiu" value="" maxlength="3" placeholder="请输入数量">--%>
-            <%--乒乓球拍--%>
-            <%--<input  type="text" size="12"  name="pppai" value="" maxlength="3" placeholder="请输入数量">--%>
-            <%--网球&nbsp;&nbsp;&nbsp;&nbsp;--%>
-            <%--<input  type="text" size="12" name="wqiu" value="" maxlength="3" placeholder="请输入数量">--%>
-            <%--网球拍&nbsp;&nbsp;&nbsp;--%>
                 <div class="selectBox">
                     <select name="equip_id" id="select">
-                        <c:forEach var="equip" items="${equipList}">
-                            <option value="${equip.equipId}">${equip.equipName}</option>
-                        </c:forEach>
+
                     </select>
                 </div>
                 <input  type="text" size="12" name="equipNum" value="0" maxlength="3" placeholder="请输入数量">
@@ -91,6 +75,29 @@
     <center><font color="＃2d2d2d">版权所有@ 场地管理系统</font></center>
 </div>
 <script>
+    // 页面加载，获取器材数据
+    window.onload=function(){
+        $.ajax({
+            type: "post",
+            url :"${pageContext.request.contextPath}/admin/equipments",
+            contentType : "application/json; charset=utf-8",
+            dataType : "json",
+            success : function(data) {
+                console.log('器材数据返回成功');
+                console.log(data);
+                var select = $('#select')
+                var _option ="";
+                for(var index=0; index<data.length;index++){
+                    _option ="<option value='"+data[index].equipId+"'>"+data[index].equipName+"</option>"
+                    // $('#select').append("<option value=data[index.equipId]>"data[index.equipName]</option>
+                    $("#select").append(_option);
+                }
+            },
+            error : function() {
+                console.log("器材数据返回失败");
+            }
+        });
+    };
     function applyEquipment(){
         var userId = sessionStorage.getItem("userId");
         console.log('userId,',userId);
@@ -106,20 +113,30 @@
         var equipNum = parseInt($('input[name="equipNum"]').val())?parseInt($('input[name="equipNum"]').val()):0;
         var sum =  equipNum*10;
         var times = $('input[name="apply_time"]').val().split('-');
-        var data = "&"+"apply_user_id="+userId+"&"+"apply_paid="+sum+"&"+"apply_pay=0"+"&"+"start_time="+times[0]+"&"+"end_time="+times[1];
-        console.log(($("#applyForm").serialize()+data));
-        var applyObj = this.stringToJson($("#applyForm").serialize()+data)
+        var applyObj = {
+            applyEquipId: $('input[name="equipNum"]').val(),
+            applyDate: $('input[name="applyDate"]').val(),
+            applyNum: equipNum,
+            applyUserId: userId,
+            applyPaid:sum,
+            applyPay: 0,
+            startTime:times[0],
+            endTime:times[1]
+        }
+        applyObj = JSON.stringify(applyObj);
         if(applyObj){
             console.log('applyObj.',applyObj)
             $.ajax({
-                type : 'get',
-                // url : ,
+                type : "post",
+                url : "${pageContext.request.contextPath}/users/applyEquip",
                 contentType : "application/json; charset=utf-8",
                 dataType : "json",
-                data : JSON.stringify(applyObj),
+                data : applyObj,
                 success : function(data) {
-                    alert("申请成功");
-                    window.location.href="${pageContext.request.contextPath}/links/applyEquipment";
+                    if (data=="success"){
+                        alert("申请成功");
+                        <%--window.location.href="${pageContext.request.contextPath}/links/applyEquipment";--%>
+                    }else alert("请检查信息是否填写正确！");
                 },
                 error : function(data) {
                     alert("申请失败");

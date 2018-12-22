@@ -9,6 +9,8 @@ public class ApplyEquip {
 
     private String applyUserId;
 
+    private Date applyDate;
+
     private Date startTime;
 
     private Date endTime;
@@ -16,6 +18,8 @@ public class ApplyEquip {
     private Integer applyPay;
 
     private Integer applyPaid;
+
+    private Integer applyNum;
 
     public Integer getApplyId() {
         return applyId;
@@ -39,6 +43,14 @@ public class ApplyEquip {
 
     public void setApplyUserId(String applyUserId) {
         this.applyUserId = applyUserId == null ? null : applyUserId.trim();
+    }
+
+    public Date getApplyDate() {
+        return applyDate;
+    }
+
+    public void setApplyDate(Date applyDate) {
+        this.applyDate = applyDate;
     }
 
     public Date getStartTime() {
@@ -71,5 +83,13 @@ public class ApplyEquip {
 
     public void setApplyPaid(Integer applyPaid) {
         this.applyPaid = applyPaid;
+    }
+
+    public Integer getApplyNum() {
+        return applyNum;
+    }
+
+    public void setApplyNum(Integer applyNum) {
+        this.applyNum = applyNum;
     }
 }

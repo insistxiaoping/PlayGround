@@ -18,8 +18,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>个人中心-我的申请</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/notice.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
     <script src="${pageContext.request.contextPath}/js/jquery-3.2.1.js"></script>
-    <!--这是按钮组-->
+    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+    <script src="https://cdn.bootcss.com/Mock.js/1.0.1-beta3/mock-min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/mock.js"></script>
 </head>
 <body>
 <div class="top">
@@ -58,75 +61,23 @@
         <li><a href="${pageContext.request.contextPath}/links/notice">馆内须知</a></li>
     </ul>
 </div>
-<div class="main">
-    <from action="" method="">
-        <table style="font-size: 15px">
-            <td>类别:</td>
-            <td><select id="listType" name="type_choo" style="font-size: 15px" >
-                <option value="all">全部</option>
-                <option value="equipments">器材</option>
-                <option value="areas">场地</option>
-            </select></td>
-            <%--<td>选择日期:</td>--%>
-            <%--<td><input type="date" name="txtDate"></td>--%>
-            <%--<td><input type="submit" value="查询"/></td>--%>
+<div class="main" id="equipTable">
+    <div class="table-responsive table-bordered">
+        <table class="table" id="equipTableList">
+            <thead>
+            <tr>
+                <th >申请序号</th>
+                <th >申请项目</th>
+                <th >申请数量</th>
+                <th >申请日期</th>
+                <th >申请时段</th>
+                <th >消费金额</th>
+                <th >已付金额</th>
+            </tr>
+            </thead>
         </table>
-        </br>
-        <div class="table-head">
-            <table border="1" cellspacing="0" cellpadding="10" width="1000">
-                <colgroup>
-                    <col style="width:80px;"/>
-                    <col style="width:100px;"/>
-                    <col style="width:80px;"/>
-                    <col style="width:100px;"/>
-                    <col style="width:100px;"/>
-                    <col style="width:100px;"/>
-                    <col style="width:100px;"/>
-                </colgroup>
-                <thead>
-                <tr>
-                    <th style="background-color:#008c9e;">申请序号</th>
-                    <th style="background-color:#008c9e;">申请项目</th>
-                    <th style="background-color:#008c9e;">申请数量</th>
-                    <th style="background-color:#008c9e;">申请日期</th>
-                    <th style="background-color:#008c9e;">申请时段</th>
-                    <th style="background-color:#008c9e;">消费金额</th>
-                    <th style="background-color:#008c9e;">已付金额</th>
-                </tr>
-                </thead>
-            </table>
-        </div>
-        <div class="table-body">
-             <table border="1" cellspacing="0" cellpadding="10" width="1000">
-                <colgroup>
-                    <col style="width:80px;"/>
-                    <col style="width:100px;"/>
-                    <col style="width:80px;"/>
-                    <col style="width:100px;"/>
-                    <col style="width:100px;"/>
-                    <col style="width:100px;"/>
-                    <col style="width:100px;"/>
-                </colgroup>
-                 <tbody>
-                    <c:forEach var="apply" items="${list}">
-                        <tr>
-                            <%--申请序号，根据list的长度遍历--%>
-                                <%--<td>${}</td>--%>
-                            <%--申请项目， apply_equip_id 是 equipments 表的主键，--%>
-                            <td>${list.name}</td>
-                            <td>${list.apply_num}</td>
-                            <td>${list.apply_date}</td>
-                            <td>${list.start_time}-${list.end_time}</td>
-                            <td>${list.apply_pay}</td>
-                            <td>${list.apply_paid}</td>
-                        </tr>
-                    </c:forEach>
-                 </tbody>
-             </table>
-        </div>
-    </from>
+    </div>
 </div>
-
 </div>
 <div class="footer" style="background-color:#008c9e">
     <center><font color="＃2d2d2d">版权所有@ 场地管理系统</font></center>
@@ -134,26 +85,40 @@
 <script>
     $(document).ready(
         function() {
-            // 选择展示 器材/ 场地 / 器材＋场地（全部） 的申请记录，第一次返回的是 全部的申请记录
-            $("#listType").change(
-                function(){
-                    var type = $(this).children('option:selected').val();
-                    console.log(type);
-                    $.ajax({
-                        type : "get",
-                        // url : ,
-                        contentType : "application/json; charset=utf-8",
-                        dataType : "json",
-                        data : 'type='+type,
-                        success : function(data) {
-                            console.log(data);
-                        },
-                        error : function(data) {
-                            console.log(data);
+            // 展示 用户的申请记录
+            $.ajax({
+                type : "get",
+                url :"${pageContext.request.contextPath}/user/applyData",
+                contentType : "application/json; charset=utf-8",
+                dataType : "json",
+                success : function(data) {
+                    console.log(data);
+                    for(var i =0;i<data.applyList.length;i++){
+                        var x=document.getElementById('equipTableList').insertRow();
+                        var cell1=x.insertCell();
+                        var cell2=x.insertCell();
+                        var cell3=x.insertCell();
+                        var cell4=x.insertCell();
+                        var cell5=x.insertCell();
+                        var cell6=x.insertCell();
+                        var cell7=x.insertCell();
+                        cell1.innerText = i+1;
+                        for(var j =0;j<data.equipList.length;j++){
+                         if(data.equipList[j].equipId==data.applyList[i].applyEquipId){
+                             cell2.innerText = data.equipList[j].equipName;
+                         }
                         }
-                    });
+                        cell3.innerText = data.applyList[i].applyNum;
+                        cell4.innerText = data.applyList[i].applyDate;
+                        cell5.innerText = data.applyList[i].startTime + '-' + data.applyList[i].endTime;
+                        cell6.innerText = data.applyList[i].applyPay;
+                        cell7.innerText = data.applyList[i].applyPaid;
+                    }
+                },
+                error : function(data) {
+                    console.log(data);
                 }
-            )
+            });
         }
     )
 </script>

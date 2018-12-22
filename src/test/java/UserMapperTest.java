@@ -24,10 +24,10 @@ public class UserMapperTest {
 	private Users users;
 	@Test
 	public void test() {
-	    List<String> list = new ArrayList<>();
-	    list.add("pppai");
-	    list.add("ppqiu");
-        mapper.deleteByPrimaryKeys(list);
+		String[] array = new String[]{};
+//		array.push("pppai");
+//		array.push("ppqiu");
+        mapper.deleteByPrimaryKeys(array);
 		System.out.println();
 	}
 
