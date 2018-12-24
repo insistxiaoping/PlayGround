@@ -50,4 +50,9 @@ public class UsersServiceImpl implements UsersService {
         return false;
     }
 
+    @Override
+    public List<ApplyEquip> queryByUserId(String applyUserId) {
+        return applyEquipMapper.queryByUserId(applyUserId);
+    }
+
 }

@@ -1,5 +1,8 @@
 package com.td.pm.bean;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.sql.Time;
 import java.util.Date;
 
 public class ApplyEquip {
@@ -9,10 +12,13 @@ public class ApplyEquip {
 
     private String applyUserId;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date applyDate;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date startTime;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date endTime;
 
     private Integer applyPay;

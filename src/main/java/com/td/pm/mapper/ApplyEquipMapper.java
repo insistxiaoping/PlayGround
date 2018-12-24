@@ -17,6 +17,7 @@ public interface ApplyEquipMapper {
     int insertSelective(ApplyEquip record);
 
     List<ApplyEquip> selectByExample(ApplyEquipExample example);
+    List<ApplyEquip>queryByUserId(@Param("applyUserId") String applyUserId);
 
     ApplyEquip selectByPrimaryKey(Integer applyId);
 

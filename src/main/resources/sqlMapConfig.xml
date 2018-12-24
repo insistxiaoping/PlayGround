@@ -7,8 +7,8 @@
 		<!-- 打印查询语句 -->
 		<setting name="logImpl" value="STDOUT_LOGGING" />
 	</settings>
-	<!-- 分页拦截器，拦截用户提交的查询，只查询当前页数据；提高响应速度。 -->
-	<!-- <plugins>
+	<!-- 分页拦截器，拦截用户提交的查询，只查询当前页数据；提高响应速度。
+	<plugins>
 		<plugin interceptor="com.td.cals.pagination.PageInterceptor">
 			<property name="databaseType" value="postgresql" />
 		</plugin>

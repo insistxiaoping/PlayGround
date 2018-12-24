@@ -104,12 +104,12 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.td.pm.bean.ApplyEquip" >
-    insert into applyequip (apply_id, apply_equip_id, apply_user_id, 
+  <insert id="insert" parameterType="com.td.pm.bean.ApplyEquip" useGeneratedKeys="true" keyProperty="applyId">
+    insert into applyequip ( apply_equip_id, apply_user_id,
       apply_date, start_time, end_time, 
       apply_pay, apply_paid, apply_num
       )
-    values (#{applyId,jdbcType=INTEGER}, #{applyEquipId,jdbcType=VARCHAR}, #{applyUserId,jdbcType=VARCHAR}, 
+    values (#{applyEquipId,jdbcType=VARCHAR}, #{applyUserId,jdbcType=VARCHAR},
       #{applyDate,jdbcType=DATE}, #{startTime,jdbcType=TIME}, #{endTime,jdbcType=TIME}, 
       #{applyPay,jdbcType=INTEGER}, #{applyPaid,jdbcType=INTEGER}, #{applyNum,jdbcType=INTEGER}
       )
@@ -273,4 +273,9 @@
       apply_num = #{applyNum,jdbcType=INTEGER}
     where apply_id = #{applyId,jdbcType=INTEGER}
   </update>
+    <select id="queryByUserId" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List" />
+        from applyequip
+        where apply_equip_id = #{applyUserId,jdbcType=VARCHAR}
+    </select>
 </mapper>

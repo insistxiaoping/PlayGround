@@ -12,7 +12,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Map;
 
 @RequestMapping("/users")
 @Controller
@@ -23,47 +28,51 @@ public class UsersController {
     @ResponseBody
     public String login(@PathVariable("userId")String userId,
                         @PathVariable("userPassword")String userPassword,
-                        @RequestParam(value = "isAdmin",required = false) String isAdmin){
+                        @RequestParam(value = "isAdmin",required = false) String isAdmin,
+                        HttpServletRequest request){
         Boolean b  = usersService.login(userId,userPassword,isAdmin);
-        String result = null;
-        //result ==true 返回 true
-        if (b != null && b){
-            result = "success";
-        }else
-            result = "failure";
-        //json转换
-        ObjectMapper mapper = new ObjectMapper();
-        try {
-            result = mapper.writeValueAsString(result);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
+        if (b){
+            request.getSession().setAttribute("userId",userId);
         }
-        return result;
+        return  getResult(b);
     }
     @RequestMapping(value = "/regist",method = RequestMethod.POST)
     @ResponseBody
     public String regist(@RequestBody(required = false) Users users){
         users.setUserId(users.getUserPhone());
         Boolean b  = usersService.saveUser(users);
-        String result = null;
-        //result ==true 返回 true
-        if (b != null && b){
-            result = "success";
-        }else
-            result = "failure";
-        //json转换
+        return  getResult(b);
+    }
+    @RequestMapping(value = "/{startTime}/{endTime}/applyEquip",method = RequestMethod.POST)
+    @ResponseBody
+    public String applyEquip(@RequestBody(required = false) ApplyEquip applyEquip,
+                             @PathVariable(value = "endTime")String endTime,
+                             @PathVariable(value = "startTime")String startTime){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        try {
+            applyEquip.setEndTime(sdf.parse(endTime));
+            applyEquip.setStartTime(sdf.parse(startTime));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Boolean b  = usersService.saveApplyEquip(applyEquip);
+        return  getResult(b);
+
+    }
+    @RequestMapping(value = "/applyData",method = RequestMethod.GET)
+    @ResponseBody
+    public String applyDataList(HttpServletRequest request){
+        List<ApplyEquip> applyEquipList = usersService.queryByUserId((String)request.getAttribute("userId"));
         ObjectMapper mapper = new ObjectMapper();
         try {
-            result = mapper.writeValueAsString(result);
+            return  mapper.writeValueAsString(applyEquipList);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
-        return result;
+        return null;
     }
-    @RequestMapping(value = "/applyEquip",method = RequestMethod.POST)
-    @ResponseBody
-    public String applyEquip(@RequestBody(required = false) ApplyEquip apply){
-        Boolean b  = usersService.saveApplyEquip(apply);
+    //返回结果
+    public String getResult(Boolean b){
         String result = null;
         //result ==true 返回 true
         if (b != null && b){

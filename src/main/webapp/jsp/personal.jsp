@@ -98,7 +98,6 @@
                         var cell1=x.insertCell();
                         var cell2=x.insertCell();
                         var cell3=x.insertCell();
-                        var cell4=x.insertCell();
                         var cell5=x.insertCell();
                         var cell6=x.insertCell();
                         var cell7=x.insertCell();

@@ -10,4 +10,5 @@ public interface UsersService {
     List<Users> queryAll();
     Boolean saveUser(Users users);
     Boolean saveApplyEquip(ApplyEquip apply);
+    List<ApplyEquip> queryByUserId(String applyUserId);
 }

@@ -43,7 +43,7 @@
     </ul>
 </div>
 <div class="main">
-    <form id="applyForm" style="font-size: 25px;color:rgba(50,50,50,100);">
+    <form id="applyForm" style="font-size: 25px;color:rgba(50,50,50,100);" method="post">
         选择日期:&nbsp;&nbsp;&nbsp;&nbsp;<input type="date" name="applyDate" value=""></br></br>
         选择时段
         <%--<label><input name="apply_time" type="checkbox" value="8:00-10:00 " /> 8:00-10:00 </label>--%>
@@ -111,24 +111,26 @@
         // apply_pay： 申请数量*乘10
         // apply_paid：0
         var equipNum = parseInt($('input[name="equipNum"]').val())?parseInt($('input[name="equipNum"]').val()):0;
-        var sum =  equipNum*10;
-        var times = $('input[name="apply_time"]').val().split('-');
-        var applyObj = {
-            applyEquipId: $('input[name="equipNum"]').val(),
-            applyDate: $('input[name="applyDate"]').val(),
-            applyNum: equipNum,
-            applyUserId: userId,
-            applyPaid:sum,
-            applyPay: 0,
-            startTime:times[0],
-            endTime:times[1]
-        }
+        var sum       =     equipNum*10;
+        var times     =     $('input[name="apply_time"]').val().split('-');
+        var startTime =     (new Date($('input[name="applyDate"]').val()+" "+times[0])).Format("yyyy-MM-dd HH:mm:ss");
+        var endTime   =    (new Date($('input[name="applyDate"]').val()+" "+times[1])).Format("yyyy-MM-dd HH:mm:ss");
+        console.log(startTime+" "+ endTime);
+        var applyObj ={
+                "applyEquipId": $('input[name="equipNum"]').val(),
+                "applyDate": $('input[name="applyDate"]').val(),
+                "applyNum": equipNum,
+                "applyUserId": userId,
+                "applyPaid":sum,
+                "applyPay": 0,
+            }
         applyObj = JSON.stringify(applyObj);
+        console.log("applyObj:"+applyObj)
         if(applyObj){
             console.log('applyObj.',applyObj)
             $.ajax({
                 type : "post",
-                url : "${pageContext.request.contextPath}/users/applyEquip",
+                url : "${pageContext.request.contextPath}/users/"+startTime+"/"+endTime+"/applyEquip",
                 contentType : "application/json; charset=utf-8",
                 dataType : "json",
                 data : applyObj,
@@ -159,6 +161,25 @@
         }
         return userObj;
     }
+    Date.prototype.Format = function (fmt) { //author: meizz
+        var o = {
+            "M+" : this.getMonth()+1, //月份
+            "d+" : this.getDate(), //日
+            "h+" : this.getHours()%12 == 0 ? 12 : this.getHours()%12, //小时
+            "H+" : this.getHours(), //小时
+            "m+" : this.getMinutes(), //分
+            "s+" : this.getSeconds(), //秒
+        };
+        if(/(y+)/.test(fmt)){
+            fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));
+        }
+        for(var k in o){
+            if(new RegExp("("+ k +")").test(fmt)){
+                fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));
+            }
+        }
+        return fmt;
+        }
 </script>
 </body>
 </html>
