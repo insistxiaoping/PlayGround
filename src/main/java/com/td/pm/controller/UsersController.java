@@ -43,18 +43,9 @@ public class UsersController {
         Boolean b  = usersService.saveUser(users);
         return  getResult(b);
     }
-    @RequestMapping(value = "/{startTime}/{endTime}/applyEquip",method = RequestMethod.POST)
+    @RequestMapping(value = "/applyEquip",method = RequestMethod.POST)
     @ResponseBody
-    public String applyEquip(@RequestBody(required = false) ApplyEquip applyEquip,
-                             @PathVariable(value = "endTime")String endTime,
-                             @PathVariable(value = "startTime")String startTime){
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        try {
-            applyEquip.setEndTime(sdf.parse(endTime));
-            applyEquip.setStartTime(sdf.parse(startTime));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+    public String applyEquip(@RequestBody(required = false) ApplyEquip applyEquip){
         Boolean b  = usersService.saveApplyEquip(applyEquip);
         return  getResult(b);
 
@@ -62,7 +53,8 @@ public class UsersController {
     @RequestMapping(value = "/applyData",method = RequestMethod.GET)
     @ResponseBody
     public String applyDataList(HttpServletRequest request){
-        List<ApplyEquip> applyEquipList = usersService.queryByUserId((String)request.getAttribute("userId"));
+        String userId = (String)request.getSession().getAttribute("userId");
+        List<ApplyEquip> applyEquipList = usersService.queryByUserId(userId);
         ObjectMapper mapper = new ObjectMapper();
         try {
             return  mapper.writeValueAsString(applyEquipList);

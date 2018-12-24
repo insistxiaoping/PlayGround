@@ -113,14 +113,13 @@
         var equipNum = parseInt($('input[name="equipNum"]').val())?parseInt($('input[name="equipNum"]').val()):0;
         var sum       =     equipNum*10;
         var times     =     $('input[name="apply_time"]').val().split('-');
-        var startTime =     (new Date($('input[name="applyDate"]').val()+" "+times[0])).Format("yyyy-MM-dd HH:mm:ss");
-        var endTime   =    (new Date($('input[name="applyDate"]').val()+" "+times[1])).Format("yyyy-MM-dd HH:mm:ss");
-        console.log(startTime+" "+ endTime);
         var applyObj ={
-                "applyEquipId": $('input[name="equipNum"]').val(),
+                "applyEquipId": "ymqp",
                 "applyDate": $('input[name="applyDate"]').val(),
                 "applyNum": equipNum,
                 "applyUserId": userId,
+                "startTime":$('input[name="applyDate"]').val()+" "+times[0],
+                "endTime":$('input[name="applyDate"]').val()+" "+times[1],
                 "applyPaid":sum,
                 "applyPay": 0,
             }
@@ -130,7 +129,7 @@
             console.log('applyObj.',applyObj)
             $.ajax({
                 type : "post",
-                url : "${pageContext.request.contextPath}/users/"+startTime+"/"+endTime+"/applyEquip",
+                url : "${pageContext.request.contextPath}/users/applyEquip",
                 contentType : "application/json; charset=utf-8",
                 dataType : "json",
                 data : applyObj,

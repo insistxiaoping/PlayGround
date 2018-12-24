@@ -88,7 +88,7 @@
             // 展示 用户的申请记录
             $.ajax({
                 type : "get",
-                url :"${pageContext.request.contextPath}/user/applyData",
+                url :"${pageContext.request.contextPath}/users/applyData",
                 contentType : "application/json; charset=utf-8",
                 dataType : "json",
                 success : function(data) {

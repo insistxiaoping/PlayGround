@@ -1,6 +1,8 @@
 //
 //
+//import com.td.pm.bean.ApplyEquip;
 //import com.td.pm.bean.Users;
+//import com.td.pm.mapper.ApplyEquipMapper;
 //import com.td.pm.mapper.EquipmentsMapper;
 //import com.td.pm.mapper.UsersMapper;
 //import com.td.pm.service.UsersService;
@@ -17,17 +19,14 @@
 //@ContextConfiguration({"classpath:applicationContext.xml","classpath:springMVC.xml"})
 //public class UserMapperTest {
 //	@Autowired
-//	private UsersService service;
+//	private ApplyEquipMapper equipMapper;
 //    @Autowired
 //    private EquipmentsMapper mapper;
 //	@Autowired
 //	private Users users;
 //	@Test
 //	public void test() {
-//		String[] array = new String[]{};
-////		array.push("pppai");
-////		array.push("ppqiu");
-//        mapper.deleteByPrimaryKeys(array);
+//        List<ApplyEquip> applyEquipList = equipMapper.queryByUserId("123");
 //		System.out.println();
 //	}
 //
